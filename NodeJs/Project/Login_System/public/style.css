@@ -1,0 +1,29 @@
+body{
+    background-image: url('/assets/freeimg_44936564freejpg850.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.center-div {
+  padding-top: 10%;
+}
+
+.btn.btn-success {
+  padding: 0.4rem 2rem;
+}
+
+form {
+  padding: 0 3em;
+}
+
+#login .title > span {
+  font-size: 0.8em;
+}
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,13 @@
+.heading{
+    background-color:rgb(185, 183, 183);
+    width: 600px;
+
+    margin: 10px auto;
+    text-align: center;
+}
+.content{
+    border: 3px solid black;
+    padding: 20px;
+    width: 554px;
+    margin: 10px auto;
+}

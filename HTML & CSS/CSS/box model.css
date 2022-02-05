@@ -1,0 +1,34 @@
+h2,img{
+    border: 10px dotted green;
+    padding: 20px;
+    width: 300px;
+    margin: 10px auto;
+    text-align: center;
+    background: red;
+
+}
+div{
+    border: 8px solid green;
+    padding: 10px 40px;
+}
+li{
+    border: 4px solid hsl(4, 90%, 95%);
+    padding: 1px 2px 3px 5px;
+}
+span{
+    border: 5px solid rebeccapurple;
+    padding: 4px;
+    margin-top: 50px;
+    margin-left: 100px;
+}
+p{
+    border: 3px dotted red;
+}
+.box-sizing1{
+    box-sizing: border-box;
+    padding: 100px;
+}
+.box-sizing2{
+    box-sizing: content-box;
+    padding: 100px;
+}

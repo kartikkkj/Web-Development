@@ -1,0 +1,15 @@
+@media (max-width: 500px ){
+        /* css */
+}
+/* always in last */
+
+@media (min-width:100px) and (max-width: 1000px) {
+/* css */
+}
+
+
+
+
+
+
+/* you can use more and more media Query */

@@ -1,0 +1,50 @@
+*{
+    box-sizing: border-box;
+}
+.fav-musician{
+    border: 10px solid green;
+}
+.mozart{
+    width: 25%;
+    float: left;
+    padding: 10px;
+     
+    border: 2px solid red;
+    background-color: lightgoldenrodyellow;
+}
+.fav-musician::after{
+    content: "";
+    display: block;
+    clear: both;
+}
+.beethoven{
+    width: 25%;
+    float: left;
+    padding: 10px;
+    height: 100%;
+    border: 2px solid red;
+    background-color: lightgoldenrodyellow;
+}
+.bach{
+    width: 25%;
+    float: left;
+    padding: 10px;
+    height: 100%;
+    border: 2px solid red;
+    background-color: lightgoldenrodyellow;
+}
+.paganini{
+    width: 25%;
+    float: left;
+    padding: 10px;
+    height: 100%;
+    border: 2px solid red;
+    background-color: lightgoldenrodyellow;
+}
+
+/* .clear-fix{
+    clear: both;
+} */
+/* .box{
+    clear: both;
+} */

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>This is dom</title>
+    <script src="14promiseDemo.js" defer></script>
+    <script src="14promiseDemo.js" type="module"></script>
+    <!-- <script src="node.js"></script> -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header class="header">
+        <nav class="container nav">
+            <h1 class="logo">Website</h1>
+            <ul class="navItem">
+                <li><a href="">Home</a></li>
+                <li><a href="">Todo</a></li>
+                <li><a href="">SignUp</a></li>
+            </ul>
+        </nav>
+        <div class="headline">
+            <h2 id="main-heading">Manage Your Task <span style="display: none;">hello</span></h2>
+            <button class="btn btn-headline">
+                Learn More
+            </button>
+            <!-- <button class="btn btn-headline" onclick="console.log('you clicked me')">
+                Learn More
+            </button> -->
+        </div>
+    </header>
+    <section class="todo-section container">
+        <h2>Your plan for Today</h2>
+        <ul class="todoList">
+            <li>todo1</li>
+            <li>todo1</li>
+            <li>todo1</li>
+            <li>todo1</li>
+        </ul>
+        
+        <form action="" class="form-todo">
+            <input type="text" name="" , id="" , placeholder="Add Todo">
+            <input type="submit" value="Add Todo">
+        </form>
+    </section>
+    <section class="section-singup container">
+        <form action="">
+            <div class="formgroup"><label for="username">username</label>
+                <input type="text" name="username" id="username">
+            </div>
+
+            <div class="formgroup"><label for="password">username</label>
+                <input type="password" name="password" id="password">
+            </div>
+            <div class="formgroup"><label for="confirmpassword">password</label>
+                <input type="password" name="confirmpassword" id="confirmpassword">
+            </div>
+
+
+            <div class="formgroup"><label for="phone">confirm password</label>
+                <input type="text" name="phone" id="phone">
+            </div>
+
+            <div class="formgroup"><label for="email">email</label>
+                <input type="text" name="email" id="email">
+            </div>
+
+            <div class="formgroup"><label for="about">text</label>
+                <textarea name="about" id="about" cols="30" rows="10"></textarea>
+            </div>
+
+            <button class="btn">submit</button>
+
+        </form>
+    </section>
+</body>
+
+</html>
