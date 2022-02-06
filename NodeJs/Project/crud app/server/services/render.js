@@ -17,6 +17,6 @@ exports.update_user=(req,res)=>{
         console.log(result.data)
         res.render('update-user',{user:result.data})
     }).catch((err) => {
-        res.send(err)
+        res.send(err) 
     });
 } 
