@@ -12,5 +12,5 @@
     gender:String,
     status:String
  })
- const userDB = mongoose.model('userDB',schema)
- module.exports = userDB
+ const UserDB = mongoose.model('userDB',schema)
+ module.exports = UserDB
