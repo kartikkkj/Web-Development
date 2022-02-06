@@ -1,10 +1,8 @@
-
 const UserDB = require("../model/model");
 
 //create and save new user
 exports.create = (req, res) => {
-  console.log('hiii')
-  if (!req.body) { 
+  if (!req.body) {
     return res.status(400).send({ message: "Content can not be null" });
   }
   const user = new UserDB({
@@ -12,20 +10,20 @@ exports.create = (req, res) => {
     email: req.body.email,
     gender: req.body.gender,
     status: req.body.status,
-    
   });
 
   user
     .save(user)
     .then((data) => {
       // console.log(data)
-      res.send(data)
-      // res.redirect('/')
-    }) 
+      // res.send(data);
+      res.redirect('/')
+    })
     .catch((err) => {
-      res.status(500).send({ message: err.message || "Something went wrong" });
-    }); 
+      res.redirect('/')
+    });
 };
+
 //retriev and return all user/ retriev and return single user
 exports.find = (req, res) => {
   if (req.query.id) {
@@ -55,21 +53,21 @@ exports.find = (req, res) => {
 
 // update a new identified user by user id
 exports.update = (req, res) => {
+  console.log("update");
   if (!req.body) {
     return res.status(400).send({ message: "Something went wrong" });
   }
   const id = req.params.id;
- UserDB.findByIdAndUpdate(id, req.body).then((data) => {
+  UserDB.findByIdAndUpdate(id, req.body)
+    .then((data) => {
       if (!data) {
-        res
-          .status(404)
-          .send({ message: "Something went wrong" });
+        res.status(404).send({ message: "Something went wrong" });
       } else {
-        res.send(data);
+        res.redirect('/');
       }
     })
     .catch((err) => {
-      res.status(500).send({ message:  "Something went wrong" });
+      res.status(500).send({ message: "Something went wrong" });
     });
 };
 
@@ -81,9 +79,9 @@ exports.delete = (req, res) => {
       if (!data) {
         res.status(400).send({ message: "Something went wrong" });
       } else {
-        res.send({ message: "deleted" });
+        res.redirect('/')
       }
-    })
+    }) 
     .catch((err) => {
       res.status(500).send({ message: err.message || "Something went wrong" });
     });

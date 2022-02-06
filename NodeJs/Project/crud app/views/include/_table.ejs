@@ -9,7 +9,8 @@
     <td><a href="/update-user?id=<%= users[i]._id %>" class="btn border-shadow update">
             <span class="text-gradient"><i class="fas fa-user-edit"></i></span>
         </a>
-        <a href="/update-user?id=" class="btn border-shadow update" data-id="<%= users[i]._id %>">
+
+        <a href="/api/users/delete/?id=<%= users[i]._id %>" class="btn border-shadow update">
             <span class="text-gradient"><i class="fas fa-times"></i></span>
         </a>
     </td>
