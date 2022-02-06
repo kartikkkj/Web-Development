@@ -1,0 +1,25 @@
+<%- include('include/_header') %>
+<header id="header">
+    <nav>
+        <div class="container">
+            <div class="text-center">
+                <a href="/" class="nav-brand text-dark">User Management System</a>
+            </div>
+        </div>
+    </nav>
+</header>
+<main id="site-main">
+    <div class="container">
+        <div class="box-nav d-flex justify-between">
+            <a href="/" class="border-shadow">
+                <span class="text-gradient"><i class="fas fa-angle-double-left" ></i> All User</span>
+            </a>
+        </div>
+        <div class="form-title text-center">
+            <h2 class="text-dark">New User</h2>
+            <span class="text-light">Use the below form to create new account</span>
+        </div>
+        <%- include('include/_userForm') %>
+    </div>
+</main>
+<%- include('include/_footer') %>

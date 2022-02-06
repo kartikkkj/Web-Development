@@ -1,0 +1,63 @@
+<%- include('include/_header') %>
+<header id="header">
+    <nav>
+        <div class="container">
+            <div class="text-center">
+                <a href="/" class="nav-brand text-dark">User Management System</a>
+            </div>
+        </div>
+    </nav>
+</header> 
+<main id="site-main">
+    <div class="container">
+        <div class="box-nav d-flex justify-between">
+            <a href="/" class="border-shadow">
+                <span class="text-gradient"><i class="fas fa-angle-double-left" ></i> All User</span>
+            </a>
+        </div>
+        <div class="form-title text-center">
+            <h2 class="text-dark">Update User</h2>
+            <span class="text-light">Use the below form to update an account</span>
+        </div>
+        <form action="/" method="POST" id='update_user'>
+            <div class="update_user">
+                <div class="form-group">
+                    <input type="hidden" name="id" value="">
+                    <label for="name" class="text-light">Name</label>
+                    <input type="text" name="name" id="name" placeholder="Name" required>
+                </div>
+                <div class="form-group">
+                    <label for="Email" class="text-light">Email</label>
+                    <input type="Email" name="Email" id="Email" placeholder="Email" required>
+                </div>
+                <div class="form-group">
+                    <label for="gender" class="text-light">Gender</label>
+                    <div class="radio inline">
+                        <input type="radio", name="gender" value="Male" id="Male">
+                        <Label for="Male" class="radio-lable">Male</Label>
+                    </div>
+                    <div class="radio inline">
+                        <input type="radio", name="gender" value="Female" id="Female">
+                        <Label for="Female" class="radio-lable">Female</Label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="status" class="text-light">Status</label>
+                    <div class="radio inline">
+                        <input type="radio", name="status" value="Active" id="Active">
+                        <Label for="Active" class="radio-lable">Active</Label>
+                    </div>
+                    <div class="radio inline">
+                        <input type="radio", name="status" value="Inactive" id="Inactive">
+                        <Label for="Inactive" class="radio-lable">Inactive</Label>
+                    </div>
+                </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn text-btn update">Update</button>
+                    </div>
+            </div>
+        </form>
+    </div>
+</main>
+<%- include('include/_footer') %>
