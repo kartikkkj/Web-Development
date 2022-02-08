@@ -28,52 +28,54 @@ switch (command) {
 }
 
 function treeFn(dirPath) {
-    if (dirPath == undefined) {
-        
-        treeFnHelper(process.cwd(),"")
-        return;
-      } else {
-        if (fs.existsSync(dirPath)) {
-          treeFnHelper(dirPath)
-          
-        } else {
-          console.log("Please provide valid <directory_path>");
-        }
-      }
+  if (dirPath == undefined) {
+    treeFnHelper(process.cwd(), "");
+    return;
+  } else {
+    if (fs.existsSync(dirPath)) {
+      treeFnHelper(dirPath);
+    } else {
+      console.log("Please provide valid <directory_path>");
+    }
+  }
 }
 
-function treeFnHelper(dirPath,indend){
-    let isFile= fs.lstatSync(dirPath).isFile()
-    if (isFile) {
-        console.log(indend+"|--- "+ path.basename(dirPath))
+function treeFnHelper(dirPath, indend) {
+  if (dirPath == undefined) {
+    return;
+  }
+  let isFile = fs.lstatSync(dirPath).isFile();
+  if (isFile) {
+    const myFile = path.basename(dirPath);
+    console.log(indend + "|--- " + myFile);
+  } else {
+    const dirName = path.basename(dirPath);
+    console.log(indend + "'--- " + dirName);
+    let files = fs.readdirSync(dirPath);
+    for (let i = 0; i <= files.length; i++) {
+      let child = path.join(dirPath, files[i]);
+      treeFnHelper(child, indend + "\t");
     }
-    else{
-        const dirName = path.basename(dirPath)
-        console.log(indend+"'--- "+ path.basename(dirPath))
-        let files = fs.readdirSync(dirPath)
-            for(let i =0; i<=files.length; i++){
-                let child=path.join(dirPath,files[i])
-                treeFnHelper(child, indend+"")    
-            }
-        
-    }
+  }
 }
 
 function organizeFn(dirPath) {
   let destPath;
   if (dirPath == undefined) {
-    destPath=process.cwd()
-    return;
+    dirPath = process.cwd();
+    destPath = path.join(dirPath, "organized");
+    if (!fs.existsSync(destPath)) {
+      fs.mkdirSync(destPath);
+    }
   } else {
     if (fs.existsSync(dirPath)) {
       destPath = path.join(dirPath, "organized");
       if (!fs.existsSync(destPath)) {
         fs.mkdirSync(destPath);
       }
-    } else {
-      console.log("Please provide valid <directory_path>");
     }
   }
+
   organizeFnHelper(dirPath, destPath);
 }
 
@@ -81,11 +83,10 @@ function organizeFnHelper(dirPath, destPath) {
   const files = fs.readdirSync(dirPath);
   for (let i = 0; i < files.length; i++) {
     const file = path.join(dirPath, files[i]);
-    let isFile= fs.lstatSync(file).isFile()
+    let isFile = fs.lstatSync(file).isFile();
     if (isFile) {
       const cat = getcat(files[i]);
       sendfiles(file, destPath, cat);
-      console.log(files[i]);
     }
   }
 }
@@ -117,8 +118,8 @@ function getcat(fileName) {
 function helpFn() {
   console.log(`
         List of all abhishek command:
-        node main.js tree <directory_path>
-        node main.js organize <directory_path>
-        node main.js help
+        abhishek tree <directory_path>
+        abhishek organize <directory_path>
+        abhishek help
     `);
 }
