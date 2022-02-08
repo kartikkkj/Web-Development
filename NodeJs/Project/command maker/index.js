@@ -2,7 +2,6 @@
 const fs = require("fs");
 const path = require("path");
 let inputArr = process.argv.slice(2);
-console.log(inputArr);
 
 const fileType = {
   media: ["mp4", "mkv"],
@@ -23,21 +22,15 @@ switch (command) {
     helpFn();
     break;
   default:
-    console.log("Please 🙏 input right abhishek command");
+    helpFnHelper()
     break;
 }
 
 function treeFn(dirPath) {
   if (dirPath == undefined) {
-    treeFnHelper(process.cwd(), "");
-    return;
-  } else {
-    if (fs.existsSync(dirPath)) {
-      treeFnHelper(dirPath);
-    } else {
-      console.log("Please provide valid <directory_path>");
-    }
-  }
+    dirPath = process.cwd();
+  } 
+  treeFnHelper(dirPath, "");
 }
 
 function treeFnHelper(dirPath, indend) {
@@ -46,13 +39,14 @@ function treeFnHelper(dirPath, indend) {
   }
   let isFile = fs.lstatSync(dirPath).isFile();
   if (isFile) {
-    const myFile = path.basename(dirPath);
-    console.log(indend + "|--- " + myFile);
-  } else {
+    const dirName = path.basename(dirPath);
+    console.log(indend + "|--- " + dirName);
+  } 
+  else {
     const dirName = path.basename(dirPath);
     console.log(indend + "'--- " + dirName);
     let files = fs.readdirSync(dirPath);
-    for (let i = 0; i <= files.length; i++) {
+    for (let i = 0; i < files.length; i++) {
       let child = path.join(dirPath, files[i]);
       treeFnHelper(child, indend + "\t");
     }
@@ -116,8 +110,12 @@ function getcat(fileName) {
 }
 
 function helpFn() {
+  helpFnHelper()
+}
+
+function helpFnHelper(){
   console.log(`
-        List of all abhishek command:
+  List of all abhishek command:
         abhishek tree <directory_path>
         abhishek organize <directory_path>
         abhishek help
