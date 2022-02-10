@@ -34,9 +34,6 @@ function treeFn(dirPath) {
 }
 
 function treeFnHelper(dirPath, indend) {
-  if (dirPath == undefined) {
-    return;
-  }
   let isFile = fs.lstatSync(dirPath).isFile();
   if (isFile) {
     const dirName = path.basename(dirPath);
@@ -45,6 +42,9 @@ function treeFnHelper(dirPath, indend) {
   else {
     const dirName = path.basename(dirPath);
     console.log(indend + "'--- " + dirName);
+    if(toString(dirPath).conta){
+      return;
+    }
     let files = fs.readdirSync(dirPath);
     for (let i = 0; i < files.length; i++) {
       let child = path.join(dirPath, files[i]);
