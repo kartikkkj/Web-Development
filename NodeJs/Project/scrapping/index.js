@@ -47,7 +47,6 @@ function extractLink(html) {
   fetch1(fullLink)
     .then((res) => {
       extractAllLink(res);
-      console.log("1")
     })
     .catch((err) => {
       console.log(err);
@@ -67,7 +66,6 @@ function extractAllLink(html) {
     fetch1(fullLink)
       .then((res) => {
         extractData(res);
-        console.log("2")
       })
       .catch((err) => {
         console.log(err);
@@ -81,7 +79,7 @@ function extractAllLink(html) {
 function extractData(html) {
   const $ = cheerio.load(html);
   const descEle = $(".match-header-container .description");
-  const result = $(".match-header-container .status-text");
+  const result = $(".match-header-container .status-text").text();
   const vanue = descEle.text().split(",")[1].trim();
   const date = descEle.text().split(",")[2].trim();
   const inning = $(".match-scorecard-page .Collapsible");
@@ -157,17 +155,17 @@ function processPlayer(
     "Result":result,
   };
   content.push(PlayerObj)
-  excelWriter(filePath, content);
+  excelWriter(filePath, content,PlayerName);
 }
 
 
 
 
 //utility functions
-function excelWriter(filePath, json) {
+function excelWriter(filePath, json,PlayerName) {
   const newWB = xlsx.utils.book_new();
   const newWS = xlsx.utils.json_to_sheet(json);
-  xlsx.utils.book_append_sheet(newWB, newWS, "All_Scores");
+  xlsx.utils.book_append_sheet(newWB, newWS, PlayerName);
   xlsx.writeFile(newWB, filePath);
 }
 
@@ -176,7 +174,7 @@ function excelReader(filePath, sheetName) {
     return [];
   }
   const wb = xlsx.readFile(filePath);
-  const excelData = wb.Sheets(sheetName);
+  const excelData = wb.Sheets[sheetName]
   const ans = xlsx.utils.sheet_to_json(excelData);
   return ans;
 }
