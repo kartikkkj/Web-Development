@@ -1,0 +1,59 @@
+.box-wrapper{
+    border: 10px solid #222;
+    display: flex;
+    height: 40vh;
+    width: 40vw;
+    
+
+     /* container property */
+    flex-direction: row;
+    /*flex-wrap: wrap;*/  
+    justify-content: center; /*work on main-axis*/
+    align-items: center; /*work on cross-axis*/
+    align-content: center;/*work on cross-axis*/
+
+    /* flex-flow: column wrap; */
+
+}
+.box{
+    border: 2px solid #666;
+    width: 300px;
+    
+}
+.box0{
+    background: lightblue;
+     /* flex-item properties */
+    flex-grow: inherit;
+    flex-shrink: inherit;
+    order: 1; /*smaller order value first position OR greater order value last position */
+    align-self: flex-end; /*similar to the align-items for indivisual item*/
+}
+.box1{
+    background: lightgreen;
+}
+.box2{
+    background: lightcoral;
+}
+.box3{
+    background: lightcyan;
+}
+.box4{
+    background: lightgrey;
+}
+.box5{
+    background: lightgoldenrodyellow;
+}
+
+                /* flex-container - diplay-flex
+|---------------------------------------------------|
+|   |---------------|   |---------------|           |
+|   |   flex-item   |   |   flex-item   |           |------>main-axis  
+|   |---------------|   |---------------|           |
+|                                                   |
+|---------------------------------------------------|
+                    |
+                    |
+                    | cross-axis
+                    | 
+                   \ /
+                    */

@@ -1,0 +1,10 @@
+div{
+    display: block; 
+}
+div{
+    display: inline; /*no heigth and width and left-rigth padding and margin*/
+}
+div{
+    display: inline-block;
+}
+

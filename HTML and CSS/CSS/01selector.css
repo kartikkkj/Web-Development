@@ -1,0 +1,66 @@
+/* universal selector */
+*{  
+    color: blue;
+}
+
+/* type selector     OR     element selector */
+body{
+    font-family: 'Montserrat', sans-serif;
+    /* color: #ce9350; */
+}
+/* grouping selector means aplly on both h1 and h3 */
+h1,h3{
+    color: rgb(54, 177, 30);
+} 
+div{
+    background-color: rgb(199, 200, 201);
+}
+span{
+    background-color: red;
+}
+
+header{
+    background-color: #f0e6e6;
+}
+
+
+
+/* section has my-article class */
+section.my-article{
+    background-color: #f2e6e6;
+}
+
+
+ 
+/* p inside header */
+header p{
+    color: red;
+}
+
+
+
+
+section.my-article h2{
+    color: rgb(174, 98, 204);
+}
+
+
+
+
+
+/* child selector */
+section.my-article>h2{
+    color: red;
+}
+
+
+
+/* adjacent sibling combinator */
+h1+p{
+    background-color: #fff;
+}
+
+/* general sibling  */
+h1~p{
+    color: #f0e6e6;
+}

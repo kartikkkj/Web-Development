@@ -1,0 +1,37 @@
+p {
+  /* Absolute unit */
+  font-size: 1pc;
+  font-size: 96px;
+  font-size: 1in;
+  font-size: 2.54cm;
+  font-size: 12pt;
+}
+/* 1 inch = 96px */
+/* 1 inch = 2.54cm */
+/* 1px = .75pt */
+
+div {
+  width: 50vw;
+  height: 50vh;
+  background-color: red;
+  font-size: 16px;
+  
+}
+p {
+  /* relative unit */
+  background-color: rebeccapurple;
+  font-size: 10%; /* relative to parent element size */
+  width: 50%;
+  height: 50%;
+  
+  padding: 50% auto;
+
+
+  font-size: 3rem; /* relative to root font size element */
+
+
+  font-size: 1em; /* relative to font size of current element */
+
+  /* vmin vmax */
+}
+

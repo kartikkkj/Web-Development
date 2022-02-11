@@ -1,0 +1,31 @@
+.box {
+    width: 10rem;
+    height: 10rem;
+}
+
+.box-1 {
+    background-color: red;
+    position: static;
+    /*by default and  no effect of T_L_B_R and z-index   and in natural document flow*/
+}
+
+.box-2 {
+    background-color: green;
+    position: relative; /* effect of T_L_B_R and z-index and in natural document flow*/
+    left: 50vw;
+}
+
+.box-3 {
+    background-color: black;
+    position: absolute; /* effect of T_L_B_R in related to last non static position and z-index and not in natural document flow*/
+    top: 50%;
+}
+
+.box-4 {
+    background-color: blue;
+    position: fixed /* effect of T_L_B_R in related to last non static position and z-index and not in natural document flow and fixed while scrolling */
+}
+.box-5 {
+    background-color: rebeccapurple;
+    position: sticky /* effect of T_L_B_R in related to last non static position and z-index and in natural document flow and fixed while scrolling */
+}
