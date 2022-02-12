@@ -5,7 +5,7 @@
     box-sizing: border-box;
 }
 
-
+/* tool-box css */
 .toolbox-cont{
    background-color: aquamarine;
    height: 10rem;
@@ -65,8 +65,11 @@
 .color-grey{
     background-color: gray;
 }
-.toolbox-priority-cont>*:hover,.action-btn-cont>*:hover{
-    
+.border{
+    border: solid goldenrod .4rem;
+}
+.toolbox-priority-cont>*:hover,.action-btn-cont>*:hover,.select-priority-cont>*:hover{
+    background-color: rgb(107, 94, 94);
 }
 
 
@@ -78,7 +81,7 @@
 
 
 
-/* modal */
+/* modal  css */
 .modal-cont{
     height: 50vh;
     width: 50vw;
@@ -136,16 +139,16 @@ textarea{
 
 
 
-
+/* notes css */
 .note-cont{
     margin-top: 2rem;
     border-radius: .4rem;
     height: 16rem;
     width: 21rem;
+    
 }
 .note-color{
-    height: 2rem;
-    background-color: grey;
+    height: 2rem; 
     padding: .4rem;
 }
 .note-id{
@@ -158,10 +161,12 @@ textarea{
 
 .note-area{
     padding: .4rem 1rem;
-    font-size: 2rem;
+    font-size: 2.5rem;
     background-color: aquamarine;
     height: 15rem;
-    font-family: 'monospace', Courier ;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    outline: none;
 }
 .main-cont{
     padding: 5rem;
@@ -170,9 +175,17 @@ textarea{
     justify-content:space-between;
     flex-wrap: wrap;
 }
-@media screen and (max-width: 500px) {
-    /* css */
-    .toolbox-cont{
-        height: 5rem;
-    }
-    }
+
+.note-lock{
+    height: 3rem; 
+    padding: .4rem;
+    font-size: 3rem;
+    display: flex;
+    justify-content: space-evenly;
+    background-color: aquamarine;
+}
+.hide{
+    visibility: hidden;
+}
+
+
