@@ -26,6 +26,7 @@
     width: 30%;
     display: flex;
     justify-content: space-evenly;
+    
 }
 .action-btn-cont{
     height: 5rem;
@@ -114,26 +115,28 @@
     border-radius: 100%;
 }
 textarea{
-    background-color: rgb(154, 165, 161);
+    background-color: rgb(184, 197, 192);
     padding: 2rem;
     height: 100%;
     width: 100%;
     resize: none;  
     border: none;
     outline: none;
-    font-size: 2rem;
-    font-family: 'monospace', Courier ;
-    color: rgb(255, 255, 255);
-    
+    font-size: 2rem;    
 }
 
 .save-btn{
     width:70%;
-    height: 3rem;
-    background-color: rgb(98, 10, 240);
+    height: 4rem;
+    background-color: rgb(0, 0, 0);
     color: white;
     font-size: 4rem;
+    display: flex;
+    align-items: center;
     text-align: center;
+    justify-content: center;
+    border-radius: 1rem;
+    box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.942);
 }
 
 
@@ -141,7 +144,7 @@ textarea{
 
 /* notes css */
 .note-cont{
-    margin-top: 2rem;
+    margin: 2rem;
     border-radius: .4rem;
     height: 16rem;
     width: 21rem;
@@ -189,3 +192,33 @@ textarea{
 }
 
 
+@media screen and (min-width:710px) and (max-width: 768px) {
+    .modal-cont{
+        width: 90vw;
+        top: calc((100vh - 50vh)/2);
+        left: calc((100vw - 90vw)/2);
+    }
+}
+@media screen and (max-width: 710px) {
+    .modal-cont{
+        width: 90vw;
+        top: calc((100vh - 30vh)/2);
+        left: calc((100vw - 90vw)/2);
+    }
+    .main-cont{
+        justify-content: center;
+    }
+    .toolbox-cont{
+        height: 22rem;
+        flex-direction: column;
+        padding: 1rem;
+     }
+     .toolbox-priority-cont{
+        width: 100%;
+     }
+     .action-btn-cont{
+         width: 100%;
+         margin-top: 3rem;
+     }
+    
+}

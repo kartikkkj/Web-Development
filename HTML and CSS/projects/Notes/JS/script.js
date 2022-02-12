@@ -10,25 +10,26 @@ const filter = document.querySelectorAll(".color");
 const allPriorityColor = document.querySelectorAll(".priority-color");
 const saveButton = document.querySelector(".save-btn");
 
-
-
-
-
-
 // Global variables
 
+let lockCalls = "fa-lock";
+let unlockCalls = "fa-lock-open";
 let addFlag = false;
 let pushflag = true;
-const noteArr = [];
+let noteArr = [];
 let removeflag = false;
-let colTof= undefined;
-let modalPriorityColor = color[color.length - 1];
+let colTof = undefined;
 const color = ["color-red", "color-orange", "color-green", "color-grey"];
+let modalPriorityColor = color[color.length - 1];
 
-
-
-
-
+if (localStorage.getItem("Note")) {
+  noteArr = JSON.parse(localStorage.getItem("Note")) ;
+  noteArr.forEach((note) => {
+    pushflag = false;
+    createNote(note.noteCol, note.noteId, note.notetask);
+  });
+  pushflag = true;
+}
 // model color selection work
 
 allPriorityColor.forEach((colorEl, idx) => {
@@ -41,10 +42,6 @@ allPriorityColor.forEach((colorEl, idx) => {
   });
 });
 
-
-
-
-
 // add btn work
 
 addBtn.addEventListener("click", (e) => {
@@ -55,10 +52,6 @@ addBtn.addEventListener("click", (e) => {
     modalcont.style.display = "none";
   }
 });
-
-
-
-
 
 // save btn work
 
@@ -71,13 +64,11 @@ saveButton.addEventListener("click", (e) => {
   }
 });
 
-
-
-
-
-//create note function 
+//create note function
 
 function createNote(noteCol, noteId, notetask) {
+
+  if (colTof == undefined || colTof == noteCol) {
     const noteCont = document.createElement("div");
     noteCont.setAttribute("class", "note-cont");
     noteCont.innerHTML = `
@@ -90,30 +81,34 @@ function createNote(noteCol, noteId, notetask) {
     </div>
     `;
 
-  if (pushflag) {
-    noteArr.push({ noteCol, noteId, notetask });
-  }
+    if (pushflag) {
+      noteArr.push({ noteCol, noteId, notetask });
+      localStorage.setItem("Note", JSON.stringify(noteArr));
+    }
 
-  maincont.appendChild(noteCont);
-  handaleRemover(noteCont);
-  handalelock(noteCont);
-  handalTag(noteCont);
-  if (removeflag) {
-    deleIconToggle();
+    maincont.appendChild(noteCont);
+    handaleRemover(noteCont, noteId);
+    handalelock(noteCont, noteId);
+    handalTag(noteCont, noteId);
+    if (removeflag) {
+      deleIconToggle();
+    }
+    defaultPriorityColor();
+  } else {
+    if (pushflag) {
+      noteArr.push({ noteCol, noteId, notetask });
+      localStorage.setItem("Note", JSON.stringify(noteArr));
+    }
   }
-  defaultPriorityColor();
 }
 
-
-
-
-
-// remove and lock btn  and tags work
+// remove work
 
 removebtn.addEventListener("click", () => {
   removeflag = !removeflag;
   deleIconToggle();
 });
+
 function deleIconToggle() {
   const dele = document.querySelectorAll(".note-lock");
   dele.forEach((dele) => {
@@ -125,55 +120,62 @@ function deleIconToggle() {
     }
   });
 }
-let lockCalls = "fa-lock";
-let unlockCalls = "fa-lock-open";
-function handalelock(noteCont) {
-  const lockEle = noteCont.querySelector(".note-lock");
-  const lock = lockEle.children[1];
-  const constentArea = noteCont.querySelector(".note-area");
-  lock.addEventListener("click", () => {
-    if (lock.classList.contains(lockCalls)) {
-      lock.classList.remove(lockCalls);
-      lock.classList.add(unlockCalls);
-      constentArea.setAttribute("contenteditable", "true");
-    } else {
-      lock.classList.remove(unlockCalls);
-      lock.classList.add(lockCalls);
-      constentArea.setAttribute("contenteditable", "false");
-    }
-  });
-}
 
-function handaleRemover(note) {
+function handaleRemover(note, id) {
   const dele = note.querySelector(".note-lock");
   const de = dele.children[0];
   de.addEventListener("click", () => {
     if (removeflag) {
+      const myidx = getNoteidx(id);
+      noteArr.splice(myidx, 1);
+      localStorage.setItem("Note", JSON.stringify(noteArr));
       note.remove();
     }
   });
 }
 
-
-
-
+//lock work
+function handalelock(noteCont, id) {
+  const lockEle = noteCont.querySelector(".note-lock");
+  const lock = lockEle.children[1];
+  const contentArea = noteCont.querySelector(".note-area");
+  lock.addEventListener("click", () => {
+    if (lock.classList.contains(lockCalls)) {
+      lock.classList.remove(lockCalls);
+      lock.classList.add(unlockCalls);
+      contentArea.setAttribute("contenteditable", "true");
+    } else {
+      const data = contentArea.innerText;
+      const myidx = getNoteidx(id);
+      noteArr[myidx].notetask = data;
+      localStorage.setItem("Note", JSON.stringify(noteArr));
+      lock.classList.remove(unlockCalls);
+      lock.classList.add(lockCalls);
+      contentArea.setAttribute("contenteditable", "false");
+    }
+  });
+}
 
 // tag changing in notes
-function handalTag(note) {
+function handalTag(note, id) {
   const curnote = note.querySelector(".note-color");
   curnote.addEventListener("click", () => {
+    const myidx = getNoteidx(id);
     const curColor = curnote.classList[1];
     let idx = color.indexOf(curColor);
     idx++;
     curnote.classList.remove(curColor);
     curnote.classList.add(color[idx % color.length]);
+    noteArr[myidx].noteCol = color[idx % color.length];
+    localStorage.setItem("Note", JSON.stringify(noteArr));
   });
 }
 
-
-
-
-
+function getNoteidx(id) {
+  return noteArr.findIndex((nodes) => {
+    return nodes.noteId == id;
+  });
+}
 
 // filtering work
 filter.forEach((mycolor) => {
@@ -194,6 +196,7 @@ filter.forEach((mycolor) => {
 // unfiltering
 filter.forEach((mycolor) => {
   mycolor.addEventListener("dblclick", () => {
+    colTof = undefined;
     const allnotes = document.querySelectorAll(".note-cont");
     allnotes.forEach((note) => {
       note.remove();
@@ -205,11 +208,6 @@ filter.forEach((mycolor) => {
     pushflag = true;
   });
 });
-
-
-
-
-
 
 // default priority color setting
 
