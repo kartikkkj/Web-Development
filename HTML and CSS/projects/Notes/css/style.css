@@ -1,0 +1,178 @@
+*{
+    padding: 0;
+    margin: 0;
+    font-size: 62.5%;
+    box-sizing: border-box;
+}
+
+
+.toolbox-cont{
+   background-color: aquamarine;
+   height: 10rem;
+   display: flex;
+   align-items: center;
+   justify-content: space-around;
+}
+
+.heading{
+    font-size: 10rem;
+    font-family: 'Courier New', Courier, monospace;
+    text-transform: capitalize;
+
+}
+
+.toolbox-priority-cont{
+    height: 50%;
+    width: 30%;
+    display: flex;
+    justify-content: space-evenly;
+}
+.action-btn-cont{
+    height: 5rem;
+    width: 20%;
+    display: flex;
+    justify-content: space-evenly;
+}
+.add-btn,.remove-btn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #fff;
+    border-radius: 100%;
+}
+.add-btn>*,.remove-btn{
+    font-size: 5rem;
+}
+.color{
+    border-radius: 100%;
+    background: #000;
+}
+.h100{
+    height: 100%;
+}
+.wrem5{
+    width: 5rem;
+}
+.color-red{
+    background-color: rgb(201, 40, 40);
+}
+.color-orange{
+    background-color: orange;
+}
+.color-green{
+    background-color: rgb(2, 156, 2);
+}
+.color-grey{
+    background-color: gray;
+}
+.toolbox-priority-cont>*:hover,.action-btn-cont>*:hover{
+    
+}
+
+
+
+
+
+
+
+
+
+
+/* modal */
+.modal-cont{
+    height: 50vh;
+    width: 50vw;
+    position: absolute;
+    top: calc((100vh - 50vh)/2);
+    left: calc((100vw - 50vw)/2);
+    display: none;
+    box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.942);
+}
+.textarea-cont{
+    height: 100%;
+    width: 80%;
+    
+    
+}
+
+.select-priority-cont{
+    height: 100%;
+    width: 20%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly ;
+    align-items: center;
+    background: aquamarine;
+}
+
+.priority-color{
+    width: 5rem;
+    height: 5rem;
+    border-radius: 100%;
+}
+textarea{
+    background-color: rgb(154, 165, 161);
+    padding: 2rem;
+    height: 100%;
+    width: 100%;
+    resize: none;  
+    border: none;
+    outline: none;
+    font-size: 2rem;
+    font-family: 'monospace', Courier ;
+    color: rgb(255, 255, 255);
+    
+}
+
+.save-btn{
+    width:70%;
+    height: 3rem;
+    background-color: rgb(98, 10, 240);
+    color: white;
+    font-size: 4rem;
+    text-align: center;
+}
+
+
+
+
+
+.note-cont{
+    margin-top: 2rem;
+    border-radius: .4rem;
+    height: 16rem;
+    width: 21rem;
+}
+.note-color{
+    height: 2rem;
+    background-color: grey;
+    padding: .4rem;
+}
+.note-id{
+    color: grey;
+    height: 3rem;
+    padding: .4rem 1rem;
+    font-size: 2rem;
+    background-color: aquamarine;
+}
+
+.note-area{
+    padding: .4rem 1rem;
+    font-size: 2rem;
+    background-color: aquamarine;
+    height: 15rem;
+    font-family: 'monospace', Courier ;
+}
+.main-cont{
+    padding: 5rem;
+    row-gap: 6rem;
+    display: flex;
+    justify-content:space-between;
+    flex-wrap: wrap;
+}
+@media screen and (max-width: 500px) {
+    /* css */
+    .toolbox-cont{
+        height: 5rem;
+    }
+    }

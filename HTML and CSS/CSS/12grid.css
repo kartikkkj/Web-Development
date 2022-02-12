@@ -1,0 +1,24 @@
+.box-wrapper{
+    border: 10px solid #222;
+    display: flex;
+    height: 40vh;
+    width: 40vw;
+  
+    
+}
+.box{
+    border: 2px solid #666;
+    width: 300px;
+    text-align: center;
+    
+}
+.box0{
+    background: lightblue;
+    
+}
+.box1{
+    background: lightgreen;
+}
+.box2{
+    background: lightcoral;
+}
