@@ -12,7 +12,6 @@ puppeteer
      return  page.waitForSelector("input[type='text']",{visible:true})
   })
   .then(()=>{
-      console.log('type')
       return page.type("input[type='text']","facebook")
   }).then((tab)=>{
       return page.keyboard.press("Enter")
