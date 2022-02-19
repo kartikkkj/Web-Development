@@ -203,6 +203,7 @@ img {
 }
 @media screen and (max-width: 710px) {
   .modal-cont {
+    flex-direction: column-reverse;
     width: 90vw;
     top: calc((100vh - 30vh) / 2);
     left: calc((100vw - 90vw) / 2);
@@ -225,5 +226,17 @@ img {
   .myself{
     height: 5rem;
     width: 5rem;
+  }
+  .select-priority-cont{
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
+    padding: 1rem;
+  }
+  .textarea-cont{
+    width: 100%;
+  }
+  .save-btn{
+    width: 10rem;
   }
 }
