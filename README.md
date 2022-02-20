@@ -1,6 +1,6 @@
 # Web-Development
-<center>This is source code of my all practice and projects in Web-Development</center>
-
+This is source code of my all practice and projects in Web-Development
+##
 
 
 ![Logo](https://www.rlogical.com/wp-content/uploads/2020/12/MERN-Stack-considered-the-Best-for-Developing-Web-Apps.png)
