@@ -15,8 +15,6 @@ exports.create = (req, res) => {
   user
     .save(user)
     .then((data) => {
-      // console.log(data)
-      // res.send(data);
       res.redirect('/')
     })
     .catch((err) => {
@@ -53,7 +51,6 @@ exports.find = (req, res) => {
 
 // update a new identified user by user id
 exports.update = (req, res) => {
-  console.log("update");
   if (!req.body) {
     return res.status(400).send({ message: "Something went wrong" });
   }

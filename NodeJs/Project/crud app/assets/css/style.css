@@ -99,12 +99,18 @@ thead,tr,th{
 }
 
 
+@media only screen and (max-width: 953px){
+    .table td>a{
+        display: flex;
+        flex-direction: column;
+    }
+}
 @media only screen and (max-width: 720px){
     table,thead,tbody,th,td,tr{
         display: block;
     }
     thead tr{
-        position: absolute;
+        position: absolute; 
         top: -9999px;
         left:-9999px;
 
@@ -124,7 +130,6 @@ thead,tr,th{
 
 
 
-
 /* add user style */
 
 .form-title{
@@ -134,10 +139,10 @@ thead,tr,th{
     max-width: 788px;
     margin: auto;
 }
-#update_user .form-group,#add_user .form-group{
+#update-user .form-group,#add_user .form-group{
     margin: .4em 0;
 }
-#update_user .form-group input,#add_user .form-group input{
+#update-user .form-group input,#add_user .form-group input{
     width: 100%;
     padding: .6em 1em;
     margin: .5em 0;
@@ -145,7 +150,7 @@ thead,tr,th{
     font-family: 'Barlow',sans-serif;
     border-radius: .2em;
 }
-#update_user .form-group .radio,#add_user .form-group .radio{
+#update-user .form-group .radio,#add_user .form-group .radio{
     display: inline-block;
     margin: 1em 2em;
 }
@@ -182,7 +187,7 @@ box-shadow: inset 0 0 0 4PX #fff;
     border-color: #b4b4b4;
     background: #b4b4b4;
 }
-#update_user .form-group .btn, #add_user .form-group .btn{
+#update-user .form-group .btn, #add_user .form-group .btn{
     width: 100%;
     padding: .9em 1em;
     background-color: var(--green-color);
@@ -194,7 +199,8 @@ box-shadow: inset 0 0 0 4PX #fff;
     margin: .5em 0;
 }
 
-#update_user .form-group .btn:hover, #add_user .form-group .btn:hover{
+#update-user .form-group .btn:hover, #add_user .form-group .btn:hover{
     background-color: var(--dark);
     color: var(--border);
 }
+

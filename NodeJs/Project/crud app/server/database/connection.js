@@ -9,9 +9,7 @@ const connectDB = async ()=>{
         //     useCreateIndex:true
         // }
         )
-        console.log(`bd connected ${con.connection.host}`)
     }catch(err){
-        console.log(err)
         process.exit(1)
     }
 } 
