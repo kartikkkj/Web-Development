@@ -264,7 +264,10 @@ option[value="Geneva"]{
   padding: .3rem;
 }
 
-
+footer{
+  position: sticky;
+  z-index: 2;
+}
 @media screen and (max-width: 768px) {
   .cellprops-action-cont{
     padding: .3rem;
