@@ -35,17 +35,17 @@ exports.find = (req, res) => {
         res.send(user);
       })
       .catch((err) => {
-        res
-          .status(500)
-          .send({ message: err.message || "Something went wrong" });
+        res.status(500)
+        res.send({ message: err|| "Something went wrong" });
       });
   }
   UserDB.find()
-    .then((user) => {
+    .then((user) => {  
       res.send(user);
     })
     .catch((err) => {
-      res.status(500).send({ message: err.message || "Something went wrong" });
+      res.status(500)
+      res.send({ message: err|| "Something went wrong" });
     });
 };
 
@@ -61,7 +61,7 @@ exports.update = (req, res) => {
         res.status(404).send({ message: "Something went wrong" });
       } else {
         res.redirect('/');
-      }
+      } 
     })
     .catch((err) => {
       res.status(500).send({ message: "Something went wrong" });

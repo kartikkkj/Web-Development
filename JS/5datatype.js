@@ -14,6 +14,7 @@
         
         let mynumber= BigInt(23423529124984329);//this is typecasting
         let mynumber1=24354345623453245n
+        let number= +"54"
         
 //booleans
 //symbol

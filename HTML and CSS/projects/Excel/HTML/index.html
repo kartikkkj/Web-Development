@@ -1,37 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
-      rel="stylesheet">
-    <link rel="stylesheet" href="../CSS/style.css">
-    <script src="../JS/script.js" defer></script>
+    
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link rel="stylesheet" href="../CSS/style.css">
+        <link rel="icon" type="image/x-icon" href="../assets/favicon.ico">
+        <script src="../JS/grid.js" defer></script>
     <title>Excel-Sheet</title>
 </head>
+
 <body>
     <header>
+        <!-- Menu-Bar -->
         <div class="page-actions-cont fix-height">
             <div class="page-action">Home</div>
-            <div class="page-action">File</div>
+            <div class="page-action selected-page-action">File</div>
             <div class="page-action">Insert</div>
             <div class="page-action">Layout</div>
             <div class="page-action">Help</div>
         </div>
+        <!-- Tool-Bar -->
         <div class="cellprops-action-cont fix-height">
-            <span class="material-icons">content_copy</span>
-            <span class="material-icons">content_cut</span>
-            <span class="material-icons">content_paste</span>
+            <span class="copy material-icons">content_copy</span>
+            <span class="cut material-icons">content_cut</span>
+            <span class="paste material-icons">content_paste</span>
             <select class="font-family-prop" name="font-type" id="font-type">
-                <option value="arial">Arial</option>
-                <option value="calibr">Calibri</option>
-                <option value="caveat">Caveat</option>
-                <option value="impact">Impact</option>
-                <option value="lobster">Lobster</option>
+                <option value="Arial">Arial</option>
+                <option value="Calibr">Calibri</option>
+                <option value="Caveat">Caveat</option>
+                <option value="Impact">Impact</option>
+                <option value="Lobster">Lobster</option>
                 <option value="monospace">Monospace</option>
-                <option value="pacifico">Pacifico</option>
-                <option value="roboto">Roboto</option>
+                <option value="Pacifico">Pacifico</option>
+                <option value="Roboto">Roboto</option>
+                <option value="Courier New">Courier New</option>
+                <option value="Segoe">Segoe</option>
+                <option value="Times New Roman">Times New Roman</option>
+                <option value="serif">serif</option>
+                <option value="Tahoma">Tahoma</option>
+                <option value="sans-serif">sans-serif</option>
+                <option value="Trebuchet">Trebuchet</option>
+                <option value="Geneva">Geneva</option>
             </select>
             <select class="font-size-prop" name="font-size" id="font-size">
                 <option value="10">10</option>
@@ -44,30 +56,38 @@
                 <option value="22">22</option>
                 <option value="24">24</option>
             </select>
-            <span class="material-icons">format_bold</span>
-            <span class="material-icons">format_italic</span>
-            <span class="material-icons">format_underline</span>
-            <span class="material-icons">format_align_left</span>
-            <span class="material-icons">format_align_center</span>
-            <span class="material-icons">format_align_right</span>
-            <span class="material-icons">format_color_text</span>
-            <span class="material-icons">format_color_fill</span>
+            <span class="material-icons bold">format_bold</span>
+            <span class="material-icons italic">format_italic</span>
+            <span class="material-icons underline">format_underline</span>
+            <span class="left material-icons alignment">format_align_left</span>
+            <span class="center material-icons alignment">format_align_center</span>
+            <span class="right material-icons alignment">format_align_right</span>
+            <div class="color-prop">
+                <span class="material-icons">format_color_text</span>
+                <input type="color" class="font-color-prop">
+            </div>
+            <div class="color-prop">
+                <span class="material-icons">format_color_fill</span>
+                <input type="color" class="BGcolor-prop">
+            </div>
+            <span class="download material-icons alignment">cloud_download</span>
+            <span class="upload material-icons alignment">cloud_upload</span>
         </div>
-
+        <!-- Formula-Bar -->
         <div class="formula-action-cont fix-height">
             <input type="text" readonly class="address-bar">
-            <img class="formula-icon" src="https://img.icons8.com/ios/50/000000/formula-fx.png"/>
+            <img class="formula-icon" src="https://img.icons8.com/ios/50/000000/formula-fx.png" />
             <input type="text" class="formula-bar">
-
         </div>
     </header>
 
 
     <main>
+        <!-- Grid and Cells -->
         <div class="grid-cont fix-height">
             <div class="top-left-dummy"></div>
             <div class="address-col-cont"></div>
-           
+
             <div class="cells-cont">
                 <div class="address-row-cont"></div>
             </div>
@@ -76,14 +96,14 @@
 
 
     <footer>
+        <!-- Sheet No -->
         <div class="sheet-action-cont fix-height">
             <div class="sheet-add-icon"> <span class="material-icons">post_add</span>
             </div>
-            <div class="sheets-folder-cont">
-                <div class="sheet-folder">Sheet-1</div>
-                <div class="sheet-folder">Sheet-2</div>
-            </div>
+            <div class="sheets-folder-cont"></div>
         </div>
     </footer>
+    <script src="../JS/cutcopy..js"></script>
 </body>
+
 </html>

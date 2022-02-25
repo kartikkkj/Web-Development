@@ -7,10 +7,10 @@ const path = require("path")
 const connectDB = require('./server/database/connection')
 
 const app = express()
-            
+              
 // Port setup 
 dotenv.config({path:"config.env"})
-const PORT = process.env.PORT ||8080 
+const PORT = process.env.PORT || 8080 
    
 // All midlewares
 app.use(morgan('tiny'))
