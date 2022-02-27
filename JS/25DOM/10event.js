@@ -1,6 +1,9 @@
 // event 
 //1st method inside html
 
+const { loadavg } = require("os")
+const { compile } = require("proxy-addr")
+
 
 
 //2nd method
@@ -135,3 +138,18 @@ c.addEventListener("click", ()=>{
 body.addEventListener("click", (e)=>{
     console.log(e.target)
 }) 
+
+// Important events
+        // click
+        // focus
+        // blur
+        // keydown/keyup
+        // mousemove
+        // mousedown/mouseup
+        // DOMCotentLoaded
+        // load
+        // unload - BeforeUnload
+        //        - afterunload
+        // readystate - loading
+        //            - intreactive
+        //            -complete

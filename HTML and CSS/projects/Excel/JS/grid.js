@@ -1,5 +1,5 @@
-const rows = 999; // No of rows
-const cols = 52; // No of columns
+const rows = 150; // No of rows
+const cols = 30; // No of columns
 
 // previous Clicked cell
 let previousClickedCell = "";
@@ -731,12 +731,12 @@ function handleSheetDB(sheetIndex) {
 }
 
 function handleSheetProp() {
-  //  for (let i = 0; i < rows; i++) {
-  //   for (let j = 0; j < cols; j++) {
-  //     const cell = document.querySelector(`.cell[rid="${i}"][cid="${j}"]`);
-  //     cell.click();
-  //   }
-  // }
+   for (let i = 0; i < rows; i++) {
+    for (let j = 0; j < cols; j++) {
+      const cell = document.querySelector(`.cell[rid="${i}"][cid="${j}"]`);
+      cell.click();
+    }
+  }
   const firstCell = document.querySelector(".cell");
   firstCell.click();
   firstCell.style.border = `3px solid ${cellBorderColor}`;
