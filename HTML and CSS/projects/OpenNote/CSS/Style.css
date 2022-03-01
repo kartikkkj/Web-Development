@@ -1,0 +1,309 @@
+*{
+    box-sizing: border-box;
+}
+body{
+    margin: 0;
+    padding: 0;
+}
+.action-cont{
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin-top: 1%;
+    margin-left: auto;
+    margin-right: auto;
+    width: 98%;
+    height: max-content;
+    display: flex;
+    flex-wrap: wrap;
+}
+.toggle-cont{
+    width: 4rem;
+    height: 4rem;
+    background-color: lightgreen;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.material-icons.md{
+    font-size: 48px;
+}
+.actions{
+    margin-left: 1rem;
+    width: max-content;
+    height: 4rem;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    display: flex;
+    border-top-left-radius: 1rem;
+    border-top-right-radius: 1rem;
+    border-bottom-left-radius: 1rem;
+    border-bottom-right-radius: 1rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    animation-name: showActions;
+    animation-iteration-count: 1;
+    animation-duration: .3s;
+}
+@keyframes showActions{
+    0%{
+        height: 0rem;
+    }
+    100%{
+        height: 4rem;
+    }
+}
+@keyframes hideActions{
+    0%{
+        height: 4rem;
+    }
+    100%{
+        height: 0rem;
+    }
+}
+.actions>*{
+    padding: .3rem;
+}
+.pencil{
+    height: 5rem;
+    width: 15rem;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border-top-left-radius: 1rem;
+    border-top-right-radius: 1rem;
+    border-bottom-left-radius: 1rem;
+    border-bottom-right-radius: 1rem;
+    padding: .3rem;
+    display: none;
+    animation-duration: .3s;
+    animation-iteration-count: 1;
+    position: absolute;
+    top: 5rem;
+    left: 6.5rem;
+    z-index: 5;
+}
+@keyframes showPencil {
+    0%{
+        height: 0rem;
+        width: 0rem;
+    }
+    100%{
+        height: 5rem;
+        width: 15rem;
+    }
+}
+@keyframes hidePencil {
+    0%{
+        height: 5rem;
+        width: 15rem;
+    }
+    100%{
+        height: 0rem;
+        width: 0rem;
+    }
+}
+.size-bar{
+    position: relative;
+    width:100%;
+    height: 40%;
+}
+.size-bar>input{
+    width: 90%;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+}
+.colors{
+    display: flex;
+    height: 60%;
+}
+.colors>*{
+    width: 67.34%;
+    height: 78%;
+    border-radius: 50%;
+    margin: .2rem;
+}
+.red{
+    background-color: red;
+}
+.blue{
+    background-color: blue;
+}
+.yellow{
+    background-color: yellow;
+}
+.pink{
+    background-color: pink;
+}
+.green{
+    background-color: green;
+}
+.black{
+    background-color: black;
+}
+.eraser{
+    padding: .3rem .5rem;
+    width: 10rem;
+    height: 2rem;
+    border-top-left-radius: .5rem;
+    border-top-right-radius: .5rem;
+    border-bottom-left-radius: .5rem;
+    border-bottom-right-radius: .5rem;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    animation-duration: .3s;
+    animation-iteration-count: 1;
+    position: absolute;
+    top: 5rem;
+    left: 12rem;
+}
+@keyframes showEraser {
+    0%{
+        width: 0rem;
+        height: 0rem;
+    }
+    100%{
+        width: 10rem;
+        height: 2rem;
+    }
+}
+@keyframes hideEraser {
+    0%{
+        width: 10rem;
+        height: 2rem;
+    }
+    100%{
+        width: 0rem;
+        height: 0rem;
+    }
+}
+.eraser>input{
+    width: 100%;
+}
+.sticky-note{
+    width: 16rem;
+    height: 16rem;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border-top-left-radius: 1rem;
+    border-top-right-radius: 1rem;
+    border-bottom-left-radius: 1rem;
+    border-bottom-right-radius: 1rem;
+    animation-duration: .3s;
+    animation-iteration-count: 1;
+}
+@keyframes hideNote{
+    0%{
+        height: 16rem;
+    }
+    100%{
+        height: 2.5rem;
+    }
+}
+@keyframes showNote{
+    0%{
+        height: 2.5rem;
+    }
+    100%{
+        height: 16rem;
+    }
+}
+.note-action
+{
+    border-top-left-radius: 1rem;
+    border-top-right-radius: 1rem;
+    width: 100%;
+    height: 2.5rem;
+    background-color: rgb(231, 211, 211);
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: .25rem;
+}
+.note-action>*{
+    width: 2rem;
+    height: 2rem;
+    background-color: pink;
+    border-radius: 50%;
+    margin: .25rem;
+}
+.minimize{
+    background-color: lightgreen;
+}
+.remove{
+    background-color: red;
+}
+.note{
+    width: 100%;
+    height: calc(100% - 2.5rem);
+    outline: none;
+    padding: 1rem;
+    font-family:sans-serif;
+
+}
+.github{
+    position: absolute;
+    width: 4rem;
+    height: 4rem;
+    border-radius: 50%;
+    top: .5rem;
+    right: .5rem;
+}
+.github>img{
+    border-radius: 50%;
+    width: 100%;
+}
+@media screen and (max-width:600px) {
+    .toggle-cont{
+        width: 2.5rem;
+        height: 2.5rem;
+    }
+    .github{
+        width: 2.5rem;
+        height: 2.5rem;
+    }
+    .material-icons.md{
+        font-size: 32px;
+    }
+    .actions{
+        height: 2.5rem;
+        position:absolute;
+        left: 0;
+        right: 0;
+        top: 3rem;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    @keyframes showActions{
+        0%{
+            height: 0rem;
+        }
+        100%{
+            height: 2.5rem;
+        }
+    }
+    @keyframes hideActions{
+        0%{
+            height: 2.5rem;
+        }
+        100%{
+            height: 0rem;
+        }
+    }
+    .pencil{
+        top: 6.5rem;
+        left: 0;
+        right: 0;
+        margin: auto;
+    }
+    .eraser{
+        top: 6.5rem;
+        left: 0;
+        right: 0;
+        margin: auto;
+    }
+}
