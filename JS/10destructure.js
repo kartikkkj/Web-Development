@@ -8,7 +8,6 @@ let [va1,va2,...newArray]=arr; // newArray
 
 
 
-
 // Object Destructuring
 const obj= {
     key1: "value1",

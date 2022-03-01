@@ -103,6 +103,18 @@ video{
     animation-iteration-count: infinite;
     animation-duration: 1s;
 }
+.material-icons{
+    color: wheat;
+    position: absolute;
+    right: 5rem;
+    bottom: 2rem;
+    height: 5rem;
+    width: 5rem;
+    cursor: pointer;
+    z-index: 2;
+    text-align: center;
+}
+
 @keyframes scale-record {
     0%{
         transform: scale(0.8);
@@ -119,6 +131,7 @@ video{
     animation-iteration-count: 1;
     animation-duration: 1s;
 }
+.material-icons.md-48 { font-size: 48px; }
 @keyframes scale-capture {
     0%{
         transform: scale(0.8);
@@ -128,5 +141,55 @@ video{
     }
     100%{
         transform: scale(.8);
+    }
+}
+
+@media screen and (max-width:425px) {
+    .action-cont{
+        flex-direction:row;
+        top: 81%;
+        height: 10rem;
+        width: 100%;
+        left: 0; 
+        right: 0; 
+        margin-left: auto; 
+        margin-right: auto;
+    }
+    .filter-cont{
+        flex-direction: row;
+        width: 15rem;
+        height: 5rem;
+        top: 2rem;
+        left: 0; 
+        right: 0; 
+        margin-left: auto; 
+        margin-right: auto; 
+    }
+    .filter{
+        width: 4rem;
+        flex-direction: row;
+    }
+    .action-cont>*{
+        height: 4rem;
+        width: 4rem;
+    }
+    .filter{
+        width: 3rem;
+    }
+    .material-icons.md-48 { font-size: 48px; }
+    .material-icons{
+        color: wheat;
+        position: absolute;
+        left: 0; 
+        right: 0; 
+        margin-left: auto; 
+        margin-right: auto; 
+        bottom: 2rem;
+        height: 5rem;
+        width: 5rem;
+        cursor: pointer;
+        text-align: center;
+        z-index: 2;
+        vertical-align: middle;
     }
 }

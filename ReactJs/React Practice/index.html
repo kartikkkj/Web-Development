@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- CDN Links -->
+    <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <!--   React diffing algo   -->
+    <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <!--   React virtual DOM   -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script> <!-- Babel   -->
+    <title>React App</title>
+</head>
+
+<body>
+    <div id="root"></div>
+</body>
+<script type="text/babel">
+    // const root = document.getElementById("root")
+    // const ele = React.createElement("h1",{
+    //     children:["hello"]
+    // })
+    // ReactDOM.render(ele,root);
+
+    // JSX --> JavaScript XML --> it gives the fuctionallity to write HTML in JavaScript
+
+    // JSX Rules
+    // 1. No Conditional-statement, loops , function , variable , object rendering and declaration 
+    // 2. Array rendering allowed
+    // 3. Alternatives of loop - map and filter function
+    // 4. Alternatives of Conditional-statement - ternary - operator
+
+
+    // functional component
+    function Element(props){// Accepting props as object and can be destructure
+        return (
+            <h1> hello {props.name}</h1>
+            )
+    }
+    function Main(){
+       return ( <>
+        <Element name="Abhishek" /> {/* props sending in key-value*/}
+        <Element/>
+        <Element/>
+        <Element/>
+        <Element/>
+        <Element/>
+        <Element/>
+        <Comp name= "Vivek" />
+        </>)
+    }
+
+
+    // Class Component
+    class Comp extends React.Component {
+        constructor() {
+            super();
+            this.state = {
+                count: 0
+            }
+        }
+        increament = () => {
+            this.setState({ 
+                count : this.state.count + 1 
+            })
+        }
+        decreament = () => {
+            this.setState({
+                 count: this.state.count - 1 
+                 })
+        }
+        render() {
+            return (
+            <>
+                <button onClick={this.increament}>+</button>
+                <h1>{this.state.count} {this.props.name}</h1>
+                <button onClick={this.decreament}>-</button>
+            </>
+            )
+        }
+    }
+
+    // ReactDOM.render(<Element/>,document.getElementById('root')) // only one render function used in a page
+    ReactDOM.render(<Main />, document.getElementById('root'))
+</script>
+
+</html>
