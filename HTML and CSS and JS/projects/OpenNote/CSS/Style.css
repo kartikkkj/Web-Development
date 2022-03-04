@@ -44,6 +44,7 @@ body{
     padding-right: 1rem;
     animation-name: showActions;
     animation-iteration-count: 1;
+    background-color: white;
     animation-duration: .3s;
 }
 @keyframes showActions{
@@ -81,6 +82,7 @@ body{
     top: 5rem;
     left: 6.5rem;
     z-index: 5;
+    background-color: white;
 }
 @keyframes showPencil {
     0%{
@@ -125,7 +127,9 @@ body{
     height: 78%;
     border-radius: 50%;
     margin: .2rem;
+    
 }
+
 .red{
     background-color: red;
 }
@@ -160,6 +164,7 @@ body{
     animation-iteration-count: 1;
     position: absolute;
     top: 5rem;
+    background-color: white;
     left: 12rem;
 }
 @keyframes showEraser {

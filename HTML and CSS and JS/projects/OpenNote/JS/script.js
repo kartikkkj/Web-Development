@@ -1,9 +1,16 @@
+
+const pencilSize = document.querySelector(".pencil .size-bar input")
+const eraserSize = document.querySelector(".eraser input")
+pencilSize.value = 3
+eraserSize.value = 12
 const toggleCont = document.querySelector(".toggle-cont");
 const pencil = document.querySelector(".pencil");
-
 const eraser = document.querySelector(".eraser");
 toggleCont.innerHTML = `<span class="material-icons md"> close </span>`;
 let toggleMenu = false;
+let UndoRedoTracker = []
+let track = 0
+// Menu toggling
 toggleCont.addEventListener("click", (e) => {
   const actions = document.querySelector(".actions");
   if (toggleMenu) {
@@ -34,8 +41,11 @@ toggleCont.addEventListener("click", (e) => {
 
 const actions = document.querySelectorAll("img");
 let pencilMenu = true;
+// Pencil fuctions toggling
 actions[0].addEventListener("click", (e) => {
   if (pencilMenu) {
+    tool.lineWidth = pencilSize.value
+    tool.strokeStyle = prevCol
     setTimeout(() => {
       eraser.style.display = "none";
       eraserMenu = true;
@@ -55,9 +65,13 @@ actions[0].addEventListener("click", (e) => {
   }
 });
 let eraserMenu = true;
+
+// Pencil fuctions toggling
 actions[1].addEventListener("click", (e) => {
   const eraser = document.querySelector(".eraser");
   if (eraserMenu) {
+    tool.strokeStyle = 'white'
+    tool.lineWidth = eraserSize.value;
     setTimeout(() => {
       pencil.style.display = "none";
       pencilMenu = true;
@@ -68,6 +82,7 @@ actions[1].addEventListener("click", (e) => {
     eraser.style.display = "block";
     eraserMenu = false;
   } else {
+    tool.strokeStyle = prevCol;
     setTimeout(() => {
       eraser.style.display = "none";
       eraserMenu = true;
@@ -114,43 +129,44 @@ function removeHandlin(stickyNote) {
 }
 
 function dragAndDrop(ball) {
-    ball.onmousedown = function(event) {
-        let shiftX = event.clientX - ball.getBoundingClientRect().left;
-        let shiftY = event.clientY - ball.getBoundingClientRect().top;
-      
-        ball.style.position = 'absolute';
-        ball.style.zIndex = 1000;
-      
-        moveAt(event.pageX, event.pageY);
-      
-        // moves the ball at (pageX, pageY) coordinates
-        // taking initial shifts into account
-        function moveAt(pageX, pageY) {
-          ball.style.left = pageX - shiftX + 'px';
-          ball.style.top = pageY - shiftY + 'px';
-        }
-      
-        function onMouseMove(event) {
-          moveAt(event.pageX, event.pageY);
-        }
-      
-        // move the ball on mousemove
-        document.addEventListener('mousemove', onMouseMove);
-      
-        // drop the ball, remove unneeded handlers
-        ball.onmouseup = function() {
-          document.removeEventListener('mousemove', onMouseMove);
-          ball.onmouseup = null;
-        };
-      
-      };
-      
-      ball.ondragstart = function() {
-        return false;
-      };
+  ball.onmousedown = function (event) {
+    let shiftX = event.clientX - ball.getBoundingClientRect().left;
+    let shiftY = event.clientY - ball.getBoundingClientRect().top;
+
+    ball.style.position = 'absolute';
+    ball.style.zIndex = 1000;
+
+    moveAt(event.pageX, event.pageY);
+
+    // moves the ball at (pageX, pageY) coordinates
+    // taking initial shifts into account
+    function moveAt(pageX, pageY) {
+      ball.style.left = pageX - shiftX + 'px';
+      ball.style.top = pageY - shiftY + 'px';
+    }
+
+    function onMouseMove(event) {
+      moveAt(event.pageX, event.pageY);
+    }
+
+    // move the ball on mousemove
+    document.addEventListener('mousemove', onMouseMove);
+
+    // drop the ball, remove unneeded handlers
+    ball.onmouseup = function () {
+      document.removeEventListener('mousemove', onMouseMove);
+      ball.onmouseup = null;
+    };
+
+  };
+
+  ball.ondragstart = function () {
+    return false;
+  };
 }
 
 const body = document.querySelector("body");
+// Sticky note Working
 actions[4].addEventListener("click", (e) => {
   const stickyNote = document.createElement("div");
   stickyNote.setAttribute("class", "sticky-note");
@@ -164,17 +180,16 @@ actions[4].addEventListener("click", (e) => {
   removeHandlin(stickyNote);
   dragAndDrop(stickyNote);
 });
-
-actions[3].addEventListener("click",(e)=>{
+actions[3].addEventListener("click", (e) => {
   const input = document.createElement("input")
   input.setAttribute("type", "file")
   input.click()
-  input.addEventListener("change", (e)=>{
-    const file =input.files[0];
-      const url = URL.createObjectURL(file)
-      const stickyNote = document.createElement("div");
-      stickyNote.setAttribute("class", "sticky-note");
-      stickyNote.innerHTML = `<div class="note-action">
+  input.addEventListener("change", (e) => {
+    const file = input.files[0];
+    const url = URL.createObjectURL(file)
+    const stickyNote = document.createElement("div");
+    stickyNote.setAttribute("class", "sticky-note");
+    stickyNote.innerHTML = `<div class="note-action">
                                     <div class="minimize"></div>
                                     <div class="remove"></div>
                                 </div>
@@ -182,11 +197,98 @@ actions[3].addEventListener("click",(e)=>{
                                   <img src="${url}">
                                 </div>
                                   `;
-      body.appendChild(stickyNote);
-      minimizeHandeling(stickyNote);
-      removeHandlin(stickyNote);
-      dragAndDrop(stickyNote);
+    body.appendChild(stickyNote);
+    minimizeHandeling(stickyNote);
+    removeHandlin(stickyNote);
+    dragAndDrop(stickyNote);
   })
-  
-})
 
+})
+actions[2].onclick = (e) => {
+  const imageURL = canvas.toDataURL();
+  const a = document.createElement("a");
+  a.href = imageURL;
+  a.download = "image.jpg";
+  a.click();
+}
+
+
+
+const canvas = document.querySelector("canvas")
+canvas.width = window.innerWidth
+canvas.height = window.innerHeight
+const tool = canvas.getContext("2d")
+tool.strokeStyle = "red"
+tool.lineWidth = pencilSize.value;
+let mouseMove = false;
+canvas.onmousedown = (e) => {
+  mouseMove = true
+  tool.beginPath()
+  tool.moveTo(e.clientX, e.clientY)
+  tool.stroke()
+}
+canvas.onmousemove = (e) => {
+  if (mouseMove) {
+    tool.stroke()
+    tool.lineTo(e.clientX, e.clientY)
+    tool.stroke()
+  }
+}
+canvas.onmouseup = (e) => {
+  mouseMove = false;
+  UndoRedoTracker.push(canvas.toDataURL())
+  track = UndoRedoTracker.length - 1
+}
+const colors = document.querySelectorAll(".colors>*")
+colors[0].style.border = "solid 3px gray";
+colors.forEach(color => {
+  color.onclick = (e) => {
+    tool.strokeStyle = color.classList[0]
+    colors.forEach(color => {
+      color.style.border = ""
+    })
+    color.style.border = "solid 3px gray";
+    prevCol = color.classList[0]
+  }
+});
+let prevCol = "red"
+pencilSize.onchange = (e) => {
+  tool.lineWidth = pencilSize.value
+}
+eraserSize.onchange = (e) => {
+  tool.lineWidth = eraserSize.value;
+}
+
+
+actions[6].onclick = (e) => {
+  if (track > 0) {
+    track--;
+    const trackObj = {
+      trackValue: track,
+      UndoRedoTracker
+    }
+    UndoRedoCanvas(trackObj)
+  }
+}
+actions[5].onclick = (e) => {
+  if (track < UndoRedoTracker.length - 1) {
+
+    track++;
+    const trackObj = {
+      trackValue: track,
+      UndoRedoTracker
+    }
+    UndoRedoCanvas(trackObj)
+  }
+}
+
+function UndoRedoCanvas(trackObj) {
+  track = trackObj.trackValue
+  UndoRedoTracker = trackObj.UndoRedoTracker;
+  const url = UndoRedoTracker[track]
+  const img = new Image();
+  img.src = url
+  img.onload = (e) => {
+    tool.drawImage(img, 0, 0, canvas.width, canvas.height)
+  }
+}

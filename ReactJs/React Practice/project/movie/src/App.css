@@ -1,11 +1,13 @@
+body{
+  padding: 0;
+  margin: 0;
+}
 .banner-card{
   width: 100%;
-  margin-top: 1vh;
-  margin-bottom: 3vh;
   position: relative;
   height: 70vh;
   color: white;
-  background-color: black;
+  outline: none;
 }
 .banner-img{
   height: 70vh;
@@ -19,8 +21,8 @@
 }
 .banner-text{
   position: absolute;
-  top: 50vh;
-  left: 5vw;
+  top: 55vh;
+  left: 9vw;
   height: 4.5rem;
   overflow: hidden;
   margin-right: 5vw;
@@ -28,7 +30,6 @@
 .movie-list{
   display: flex;
   flex-wrap: wrap;
-  padding: 1rem;
   justify-content: center;
 }
 .movie-card{
@@ -44,13 +45,44 @@
 }
 .movie-btn{
   position: absolute;
-  bottom: 2rem;
+  bottom: 5rem;
 }
 .movie-img{
  height: 40vh;   
  width: 20vw;
 }
+.button-wrapper{
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  bottom: 3rem;
+}
+.movies{
+  margin-top: 2rem;
+}
+.center{
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  right: 0;
+  margin: auto;
+}
+.deactive{
+  color: grey;
+}
+.favourites-genres{
+  padding: 3rem;
+}
+.favourites-table{
+  padding: 3rem;
+}
 @media screen and (max-width:400px){
+  .movies{
+    margin-top: 1rem;
+  }
   .banner-card{
     height: 30vh;
   }
@@ -59,6 +91,7 @@
   }
   .banner-title{
     height: 12vh;
+    top: 5vh;
     left: 5vw;
   }
   .banner-text{
