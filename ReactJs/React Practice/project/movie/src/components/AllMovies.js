@@ -10,7 +10,6 @@ export default class AllMovies extends Component {
       movies: [],
       favourites: [],
     };
-
   }
   async componentDidMount() {
     const res = await axios.get(
@@ -20,10 +19,7 @@ export default class AllMovies extends Component {
     this.setState({
       movies: [...data.results],
     });
-    let oldData = JSON.parse(localStorage.getItem("movies") || "[]");
-    this.setState({
-      favourites: [...oldData]
-    })
+    this.handleFavouritesState();
   }
   changeMovies = async () => {
     const res = await axios.get(
@@ -68,7 +64,7 @@ export default class AllMovies extends Component {
     }
   };
   handleClick = (i) => {
-    if (this.state.curp !== i) {
+    if (this.state.curp !== i){
       this.setState(
         {
           curp: i,
@@ -78,14 +74,10 @@ export default class AllMovies extends Component {
     }
   };
   handleFavourites = (movie) => {
-    let oldData = JSON.parse(localStorage.getItem("movies"));
-    if (!oldData) {
-      oldData = [];
-    }
+    let oldData = JSON.parse(localStorage.getItem("movies")||"[]");
     if (this.state.favourites.includes(movie.id)) {
-      oldData = oldData.filter((m) => m.id != movie.id);
+      oldData = oldData.filter((m) => m.id !== movie.id);
     } else {
-      console.log(oldData);
       oldData.push(movie);
     }
     localStorage.setItem("movies", JSON.stringify(oldData));
@@ -99,9 +91,7 @@ export default class AllMovies extends Component {
     });
   };
   render() {
-
     return (
-
       <>
         {this.state.movies.length === 0 ? (
           <div className="spinner-border text-primary center" role="status">
@@ -109,7 +99,7 @@ export default class AllMovies extends Component {
           </div>
         ) : (
           <div className="movies">
-            <h1 className="text-center">
+            <h1 className="text-center" id="#Trend">
               <strong>Trendings</strong>
             </h1>
             <div className="movie-list">
@@ -121,7 +111,9 @@ export default class AllMovies extends Component {
                     this.setState({ hover: movieobj.id });
                   }}
                   onMouseLeave={() => {
-                    this.state.hover = "";
+                    this.setState({
+                      hover:""
+                    })
                   }}
                 >
                   <img
@@ -150,7 +142,7 @@ export default class AllMovies extends Component {
                 </div>
               ))}
             </div>
-            <div style={{ display: "flex", justifyContent: "center" }}>
+            <div style={{ display: "flex", justifyContent: "center", cursor:"pointer" }}>
               <nav aria-label="...">
                 <ul className="pagination">
                   <li className="page-item" onClick={this.handleRight}>
@@ -183,7 +175,7 @@ export default class AllMovies extends Component {
                     <a className="page-link">...</a>
                   </li>
                   <li className="page-item" onClick={this.handleLeft}>
-                    <a className="page-link">Next</a>
+                    <a className="page-link" href="#Trend">Next</a>
                   </li>
                 </ul>
               </nav>

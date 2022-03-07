@@ -1,15 +1,35 @@
-
-const pencilSize = document.querySelector(".pencil .size-bar input")
-const eraserSize = document.querySelector(".eraser input")
-pencilSize.value = 3
-eraserSize.value = 12
-const toggleCont = document.querySelector(".toggle-cont");
+const canvas = document.querySelector("canvas")
+const colors = document.querySelectorAll(".colors>*")
 const pencil = document.querySelector(".pencil");
 const eraser = document.querySelector(".eraser");
-toggleCont.innerHTML = `<span class="material-icons md"> close </span>`;
-let toggleMenu = false;
+const pencilSizeElem = document.querySelector(".pencil .size-bar input")
+const eraserSizeElem = document.querySelector(".eraser input")
+const toggleCont = document.querySelector(".toggle-cont");
+const actions = document.querySelectorAll("img");
+const github = document.querySelector(".github");
+const body = document.querySelector("body");
+
+
+canvas.width = window.innerWidth
+canvas.height = window.innerHeight
+let mouseMove = false;
+let penColor = "red"
+colors[0].style.border = "solid 3px gray";
+const eraserColor ="white"
+let pencilSize = pencilSizeElem.value;
+let eraserSize = eraserSizeElem.value;
 let UndoRedoTracker = []
 let track = 0
+let eraserMenu = true;
+let toggleMenu = false;
+let pencilMenu = true;
+const tool = canvas.getContext("2d")
+tool.strokeStyle = penColor;
+tool.lineWidth = pencilSize;
+
+UndoRedoTracker.push(canvas.toDataURL())
+track = UndoRedoTracker.length - 1
+
 // Menu toggling
 toggleCont.addEventListener("click", (e) => {
   const actions = document.querySelector(".actions");
@@ -39,13 +59,13 @@ toggleCont.addEventListener("click", (e) => {
   }
 });
 
-const actions = document.querySelectorAll("img");
-let pencilMenu = true;
+
+
 // Pencil fuctions toggling
 actions[0].addEventListener("click", (e) => {
+  tool.strokeStyle = penColor;
+  tool.lineWidth = pencilSize;
   if (pencilMenu) {
-    tool.lineWidth = pencilSize.value
-    tool.strokeStyle = prevCol
     setTimeout(() => {
       eraser.style.display = "none";
       eraserMenu = true;
@@ -64,14 +84,14 @@ actions[0].addEventListener("click", (e) => {
     pencil.style.animationName = "hidePencil";
   }
 });
-let eraserMenu = true;
 
-// Pencil fuctions toggling
+
+// eraser fuctions toggling
 actions[1].addEventListener("click", (e) => {
-  const eraser = document.querySelector(".eraser");
   if (eraserMenu) {
-    tool.strokeStyle = 'white'
-    tool.lineWidth = eraserSize.value;
+    tool.strokeStyle = eraserColor;
+    tool.lineWidth = eraserSize;
+    console.log(tool.strokeStyle);
     setTimeout(() => {
       pencil.style.display = "none";
       pencilMenu = true;
@@ -82,7 +102,6 @@ actions[1].addEventListener("click", (e) => {
     eraser.style.display = "block";
     eraserMenu = false;
   } else {
-    tool.strokeStyle = prevCol;
     setTimeout(() => {
       eraser.style.display = "none";
       eraserMenu = true;
@@ -91,7 +110,8 @@ actions[1].addEventListener("click", (e) => {
     eraser.style.animationName = "hideEraser";
   }
 });
-const github = document.querySelector(".github");
+
+
 github.addEventListener("click", (e) => {
   const a = document.createElement("a");
   a.href = "https://github.com/AbhyArya";
@@ -165,7 +185,7 @@ function dragAndDrop(ball) {
   };
 }
 
-const body = document.querySelector("body");
+
 // Sticky note Working
 actions[4].addEventListener("click", (e) => {
   const stickyNote = document.createElement("div");
@@ -204,43 +224,76 @@ actions[3].addEventListener("click", (e) => {
   })
 
 })
-actions[2].onclick = (e) => {
-  const imageURL = canvas.toDataURL();
-  const a = document.createElement("a");
-  a.href = imageURL;
-  a.download = "image.jpg";
-  a.click();
+
+
+
+
+function beginPath(strokeObj) {
+    tool.beginPath()
+    tool.moveTo(strokeObj.X, strokeObj.Y)
+    tool.stroke()
+}
+function drawStroke(strokeObj) {
+    tool.strokeStyle = strokeObj.color
+    tool.lineWidth = strokeObj.width
+    tool.lineTo(strokeObj.X, strokeObj.Y)
+    tool.stroke()
 }
 
 
 
-const canvas = document.querySelector("canvas")
-canvas.width = window.innerWidth
-canvas.height = window.innerHeight
-const tool = canvas.getContext("2d")
-tool.strokeStyle = "red"
-tool.lineWidth = pencilSize.value;
-let mouseMove = false;
-canvas.onmousedown = (e) => {
+canvas.ontouchstart = (e) => {
   mouseMove = true
-  tool.beginPath()
-  tool.moveTo(e.clientX, e.clientY)
-  tool.stroke()
+  const data ={
+      X: e.clientX,
+      Y: e.clientY
+  }
+    socket.emit("beginPath",data)
 }
-canvas.onmousemove = (e) => {
+canvas.ontouchmove = (e) => {
   if (mouseMove) {
-    tool.stroke()
-    tool.lineTo(e.clientX, e.clientY)
-    tool.stroke()
+      const data = {
+          X: e.clientX,
+          Y: e.clientY,
+          color : !eraserMenu ? eraserColor: penColor,
+          width : !eraserMenu ? eraserSize: pencilSize
+      }
+      socket.emit("drawStroke",data)
   }
 }
-canvas.onmouseup = (e) => {
+canvas.ontouchend = (e) => {
   mouseMove = false;
   UndoRedoTracker.push(canvas.toDataURL())
   track = UndoRedoTracker.length - 1
 }
-const colors = document.querySelectorAll(".colors>*")
-colors[0].style.border = "solid 3px gray";
+
+canvas.onmousedown = (e) => {
+    mouseMove = true
+    const data ={
+        X: e.clientX,
+        Y: e.clientY
+    }
+      socket.emit("beginPath",data)
+}
+canvas.onmousemove = (e) => {
+    if (mouseMove) {
+        const data = {
+            X: e.clientX,
+            Y: e.clientY,
+            color : !eraserMenu ? eraserColor: penColor,
+            width : !eraserMenu ? eraserSize: pencilSize
+        }
+        socket.emit("drawStroke",data)
+    }
+}
+canvas.onmouseup = (e) => {
+    mouseMove = false;
+    UndoRedoTracker.push(canvas.toDataURL())
+    track = UndoRedoTracker.length - 1
+}
+
+
+
 colors.forEach(color => {
   color.onclick = (e) => {
     tool.strokeStyle = color.classList[0]
@@ -248,47 +301,86 @@ colors.forEach(color => {
       color.style.border = ""
     })
     color.style.border = "solid 3px gray";
-    prevCol = color.classList[0]
+    penColor = color.classList[0]
+    tool.strokeStyle = penColor
   }
 });
-let prevCol = "red"
-pencilSize.onchange = (e) => {
-  tool.lineWidth = pencilSize.value
-}
-eraserSize.onchange = (e) => {
-  tool.lineWidth = eraserSize.value;
+pencilSizeElem.onchange = (e) => {
+    pencilSize =pencilSizeElem.value
+    tool.lineWidth = pencilSize
+  }
+eraserSizeElem.onchange = (e) => {
+    eraserSize = eraserSizeElem.value;
+    tool.lineWidth = eraserSize
 }
 
+actions[2].onclick = (e) => {
+    const imageURL = canvas.toDataURL();
+    const a = document.createElement("a");
+    a.href = imageURL;
+    a.download = "image.jpg";
+    a.click();  
+  }
 
+
+  
 actions[6].onclick = (e) => {
-  if (track > 0) {
-    track--;
-    const trackObj = {
-      trackValue: track,
-      UndoRedoTracker
+    if (track > 0) {
+      track--;
+      const data = {
+        trackValue: track,
+        UndoRedoTracker1 : UndoRedoTracker
+      }
+      // socket.emit("ru",data)
+      UndoRedoCanvas(data)
     }
-    UndoRedoCanvas(trackObj)
   }
-}
-actions[5].onclick = (e) => {
-  if (track < UndoRedoTracker.length - 1) {
-
-    track++;
-    const trackObj = {
-      trackValue: track,
-      UndoRedoTracker
+  actions[5].onclick = (e) => {
+    if (track < UndoRedoTracker.length-1) {
+      track++;
+      const data = {
+        trackValue: track,
+        UndoRedoTracker1 : UndoRedoTracker
+      }
+      // socket.emit("ru",data)
+      UndoRedoCanvas(data)
     }
-    UndoRedoCanvas(trackObj)
   }
-}
+  function UndoRedoCanvas(trackObj) {
 
-function UndoRedoCanvas(trackObj) {
-  track = trackObj.trackValue
-  UndoRedoTracker = trackObj.UndoRedoTracker;
-  const url = UndoRedoTracker[track]
-  const img = new Image();
-  img.src = url
-  img.onload = (e) => {
-    tool.drawImage(img, 0, 0, canvas.width, canvas.height)
+    track = trackObj.trackValue
+    UndoRedoTracker = trackObj.UndoRedoTracker1;
+    
+    const url = UndoRedoTracker[track];
+    const img = new Image()
+    img.src = url
+    img.onload = (e) => {
+      tool.drawImage(img, 0, 0, canvas.innerWidth, canvas.innerHeight);
+      tool.drawImage(img, 0, 0, canvas.innerWidth, canvas.innerHeight)
+    }
   }
-}
+
+  function clear(){
+    tool.fillStyle = 'white';
+    tool.fillRect(0, 0, canvas.width, canvas.height);
+  }
+
+  actions[7].onclick=(e)=>{
+    clear();
+    UndoRedoTracker.push(canvas.toDataURL())
+    track = UndoRedoTracker.length - 1
+    socket.emit("clear")
+  }
+
+  socket.on("beginPath",(data)=>{
+    beginPath(data)
+  })
+  socket.on("drawStroke",(data)=>{
+    drawStroke(data);
+  })
+  socket.on("ru",(data)=>{
+    UndoRedoCanvas(data)
+  })
+  socket.on("clear",()=>{
+    clear();
+  })

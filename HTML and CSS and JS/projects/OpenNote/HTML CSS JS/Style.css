@@ -256,9 +256,10 @@ body{
     padding: 1rem;
     font-family:sans-serif;
 }
-.sticky-note>.note>img{
+.note>img{
+    height: 100%;
     width: 100%;
-    object-fit: cover;
+    padding: 1px;
 }
 .github{
     position: absolute;

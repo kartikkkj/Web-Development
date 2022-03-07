@@ -1,0 +1,42 @@
+:root{
+    --hue-color:218;
+    --color-primary: hsl(var(--hue-color),50%,50%);
+    --color-primary-hover: hsl(var(--hue-color),50%,30%);
+    --color-body:hsl(var(--hue-color),50%,95%);
+    --color-text:hsl(var(--hue-color),20%,20%);
+                            /* #-color rrbbgg each place value will be in 0-f 0=darker f = lighter*/
+                            /* rgb-color (r,b,g) each place value will be in 0-255 0=darker 255 = lighter*/
+                            /* rgba-color (r,b,g,a(0-1)) each place value will be in 0-255 except a 0=darker 255 = lighter*/
+                            /* hsl-color(hue(0-360),saturation(0-100%(grey-color)),light(0-100%(black-color-white))  each place value will be in 0-255 0=darker 255 = lighter*/
+                            /* hwb-color(hue(0-360),whiteness(0-100%(color-white)),blackness(0-100%(color-black)))*/
+    
+}
+.dark-mode{
+    --color-primary: hsl(var(--hue-color),50%,50%);
+    --color-primary-hover: hsl(var(--hue-color),50%,30%);
+    --color-body:hsl(var(--hue-color),50%,10%);
+    --color-text:hsl(var(--hue-color),20%,90%);
+}
+p{
+    color: var(--color-text);
+}
+body{
+    background-color: var(--color-body);
+}
+h1{
+    color: var(--color-primary);
+    background-color: hwb(0 0% 76%);
+}
+button{
+    border: none;
+    outline: none;
+    font-size: inherit;
+    padding: 1rem 1.5rem;
+    background-color: var(--color-primary);
+    color: #fff;
+    cursor: pointer;
+    transition: .3s background;
+}
+button:hover{
+    background-color: var(--color-primary-hover);
+}

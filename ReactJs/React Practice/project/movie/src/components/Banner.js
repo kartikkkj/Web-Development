@@ -5,7 +5,7 @@ export default class Banner extends Component {
   constructor() {
     super();
     this.state = {
-      movie: [],
+      movie: {},
     };
   }
   async componentDidMount() {
