@@ -5,13 +5,13 @@ const styles ={
         color:"white"
     }
 }
-export default function HOC(WrapComp) {
+export default function HOC(Button) {
   return function(args){
     let temp ={};
       if(args.dark){
         temp = {...styles.dark}
       }
       let obj = {...args,style:temp}
-      return <WrapComp {...obj} />
+      return <Button {...obj} />
   }
 }

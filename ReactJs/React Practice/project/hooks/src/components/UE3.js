@@ -4,7 +4,7 @@ import { useState,useEffect } from 'react';
 export default function UE3() {
     const[count , setCount] = useState(0);
     const[obj, setObj] = useState({message:"hello", name:"Abhi"})
-    useEffect(()=>{
+    useEffect(()=>{ // iff count update
         console.log("useEffect");
         document.title = count;
     },[count])
