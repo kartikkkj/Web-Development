@@ -331,7 +331,6 @@ actions[6].onclick = (e) => {
         trackValue: track,
         UndoRedoTracker1 : UndoRedoTracker
       }
-      // socket.emit("ru",data)
       UndoRedoCanvas(data)
     }
   }
@@ -342,7 +341,6 @@ actions[6].onclick = (e) => {
         trackValue: track,
         UndoRedoTracker1 : UndoRedoTracker
       }
-      // socket.emit("ru",data)
       UndoRedoCanvas(data)
     }
   }

@@ -1,0 +1,205 @@
+body{
+  overflow: hidden;
+}
+.join-wrapper {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.form-wrapper {
+  background-color: white;
+  padding: 1rem;
+  border-radius: 1rem;
+  max-width: 90%;
+}
+.form-wrapper > img {
+  height: 10rem;
+}
+.github {
+  position: fixed;
+  bottom: 0;
+}
+.github a {
+  color: rgb(64, 105, 2);
+}
+.inputs {
+  display: flex;
+  flex-direction: column;
+}
+.inputs .input {
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  outline: none;
+  border: none;
+  margin-bottom: 1rem;
+  background-color: bisque;
+  font-weight: bold;
+}
+
+.lable {
+  margin-bottom: 0.5rem;
+  margin-top: 0;
+}
+.btn {
+  border: none;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  cursor: pointer;
+  padding: 0.5rem;
+  transition: all 0.3s ease-in-out;
+  font-weight: bold;
+}
+.joinbtn {
+  background-color: gold;
+  width: 5rem;
+  margin-left: auto;
+}
+.joinbtn:hover {
+  background-color: goldenrod;
+}
+.createInfo {
+  margin: 0.3rem 0 0 0;
+  text-align: center;
+  font-weight: bold;
+}
+.createInfo > * {
+  text-decoration: none;
+  color: rgb(64, 105, 2);
+  transition: all 0.3s ease-in-out;
+}
+.createInfo > *:hover,
+.github a:hover {
+  text-decoration: none;
+  color: rgb(28, 46, 1);
+}
+.main-wrapper {
+  display: flex;
+  flex-direction: row;
+  height: 100vh;
+  width: 100vw;
+}
+.aside-wrapper {
+  background-color: white;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  width: 20rem;
+}
+.aside-inner {
+  flex: 1;
+}
+.logo > img {
+  width: 90%;
+}
+.logo {
+  border-bottom: 5px solid;
+}
+.clients-list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem;
+}
+.client {
+  display: flex;
+  flex-direction: column;
+  font-weight: bold;
+  align-items: center;
+}
+.leave-btn {
+  margin-top: 1rem;
+  background-color: rgb(245, 115, 115);
+}
+.leave-btn:hover {
+  background-color: rgb(231, 53, 53);
+}
+.copy-btn {
+  background-color: gold;
+}
+.copy-btn:hover {
+  background-color: goldenrod;
+}
+.editor-wrapper {
+  width: calc(100vw - 22rem);
+}
+.CodeMirror {
+  min-height: calc(100vh - 6.15rem);
+  font-size: 1.4rem;
+  padding: 1rem;
+  line-height: 1.6;
+  word-break: break-all;
+}
+.CodeMirror-selected {
+  background-color: rgb(77, 77, 77) !important;
+}
+.language {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.language > select {
+  height: 1.5rem;
+  font-weight: bold;
+  outline: none;
+  border: none;
+  background-color: gold;
+}
+.language > select > option {
+  padding: 0.5rem;
+  font-weight: bold;
+}
+.language > select > option:hover {
+  background-color: goldenrod;
+}
+.run-container {
+  background-color: white;
+  height: fit-content;
+  position:absolute;
+  width: calc(100vw - 22rem);
+  bottom:  0;
+}
+.btn-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem;
+}
+.output-cont{
+  height: 15rem;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  
+}
+.output-cont>h3{
+ padding-left: .5rem;
+}
+.output{
+  background-color: wheat;
+  height: 95%;
+  min-width: 95%;
+  max-width: 95%;
+  align-self: center;
+  padding: .5rem;
+  font-weight: bold;
+  font-family: monospace;
+  font-size: 1rem;
+  white-space:pre-wrap;
+  overflow-y:scroll;
+  overflow-x:visible;
+  scroll-behavior: auto;
+  word-break:break-all;
+}
+.InOut{
+  display: flex;
+  justify-content: center;
+  outline: none;
+}
+@media (max-width: 425px) {
+  .form-wrapper img {
+    height: 7rem;
+  }
+}

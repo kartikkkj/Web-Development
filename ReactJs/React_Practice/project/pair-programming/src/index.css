@@ -1,0 +1,15 @@
+:root{
+  --bgcolorlight: hsl(40, 86%, 76%);
+  --bgcolordark:  hsl(356, 11%, 36%);
+  --textColorlight: hsl(356, 11%, 2%);
+  --textColorDark: hsl(356, 41%, 97%);
+}
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: var(--bgcolorlight)
+}
