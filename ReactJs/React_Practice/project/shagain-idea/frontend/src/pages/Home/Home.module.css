@@ -1,0 +1,14 @@
+.text{
+    font-size: 22px;
+    line-height: 1.5;
+    color: #c4c5c6;
+}
+.cardWrapper{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+.signinWrapper{
+    margin-top: 20px;
+}
