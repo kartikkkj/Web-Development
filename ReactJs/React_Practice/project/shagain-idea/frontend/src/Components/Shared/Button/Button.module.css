@@ -2,14 +2,14 @@
     background: #00A6ED;
     border-radius:  20px;
     cursor: pointer;
-
+    width: 400px;
     transition:all .25s ease-in-out;
 }
 h1{
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: auto;
+    margin: 0 auto;
 }
 
 .color:hover{

@@ -1,0 +1,17 @@
+.input{
+    background: #7f7a7a;
+    border: none;
+    padding: 10px 20px;
+    color: white;
+    font-size: 18px;
+    border-radius: 20px;
+    width: 300px;
+    outline: none;
+    -webkit-appearance: none;
+    margin-top: 20px;
+}
+
+.input::-webkit-outer-spin-button,
+.input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+}

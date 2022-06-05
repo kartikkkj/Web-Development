@@ -1,14 +1,13 @@
 import React from "react";
 import styles from "./Home.module.css";
-import { Link, useNavigate} from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 import Card from "../../Components/Shared/Card/Card";
 import Button from "../../Components/Shared/Button/Button";
 export default function Home() {
     const history = useNavigate();
 
     function startRegister(){
-        history("register")
-        console.log("HHH");
+        history("authentication")
     }
   return (
     <div className={styles.cardWrapper}>
@@ -18,10 +17,8 @@ export default function Home() {
           wrap up the finishing youches, we're adding people gradually to make
           sure nothing breaks.
         </p>
-        <Button onclicked = {startRegister} text ={"Get your username"}></Button>
+        <Button onclicked = {startRegister} text ={"let's Go"}></Button>
         <div className={styles.signinWrapper}>
-          <span>Have an invite text </span>
-          <Link style={{cursor:"pointer", fontWeight:"bold", textDecoration:"none" , color:"#00A6ED"}} to="/login">Sign In</Link>
         </div>
       </Card>
     </div>

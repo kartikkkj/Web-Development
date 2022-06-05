@@ -1,10 +1,8 @@
 import React, { useState } from "react";
-import Button from "../../../Components/Shared/Button/Button";
-import Card from "../../../Components/Shared/Card/Card";
 import Email from "./PhoneOrEmail/Email/Email";
 import Phone from "./PhoneOrEmail/Phone/Phone";
-import styles from "../Step.module.css";
-export default function PhoneEmail({ onNext }) {
+import styles from "../Step/Step.module.css";
+export default function Forgot() {
   const phoneEmail = {
     phone: Phone,
     email: Email,
@@ -13,6 +11,7 @@ export default function PhoneEmail({ onNext }) {
   const CompType = phoneEmail[type];
   return (
     <>
+      <div className={styles.cardWrapper}>
         <div className={styles.cardWrapper}>
           <div className={styles.buttonWrap}>
             <span
@@ -33,9 +32,10 @@ export default function PhoneEmail({ onNext }) {
             </span>
           </div>
           <div>
-            <CompType onNext={onNext} />
+            <CompType />
           </div>
         </div>
+      </div>
     </>
   );
 }
