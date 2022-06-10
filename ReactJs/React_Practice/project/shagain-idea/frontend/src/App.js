@@ -10,16 +10,16 @@ import Activate from "./pages/Activate/Activate";
 import UserName from "./pages/Step/UserName/UserName";
 import PublicRooms from "./pages/PublicRooms/PublicRooms";
 import Forgot from "./pages/Forgot/Forgot";
-const isAuth = false;
-const user = {
-  activated: false,
-};
+import { useSelector } from "react-redux";
+import Name from "./pages/Step/Name/Name";
+
 
 function App() {
+  const {isAuth, user} = useSelector((state)=>state.auth)
   return (
     <>
-      <Navigation />
       <BrowserRouter>
+      <Navigation />
         <Routes>
           <Route
             path="/"
@@ -29,7 +29,8 @@ function App() {
               ) : isAuth && !user.activated ? (
                 <Navigate replace to="/activate" />
               ) : (
-                <Home />
+                // <Home />
+                <Activate/>
               ) 
             }
           ></Route>

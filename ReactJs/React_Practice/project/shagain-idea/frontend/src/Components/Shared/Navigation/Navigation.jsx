@@ -9,16 +9,15 @@ export default function Navigation() {
     fontSize: "22px",
     display: "flex",
     alignItem: "center",
+    padding:"20px 0 0 40px"
   };
   return (
     <div className={`${styles.navbar} container`}>
-      {/* <Link style={brandStyle} to="/">
+      <Link style={brandStyle} to="/">
         <span>
           <span>👋</span>Shagain Idea
         </span>
-      </Link> */}
-{/* <Link to='/login'>Sign In</Link> */}
-
+      </Link>
     </div>
   );
 }

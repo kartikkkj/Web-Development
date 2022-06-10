@@ -5,4 +5,4 @@ class HashService{
     }
 }
 
-module.exports = new HashService()
+module.exports = new HashService()  

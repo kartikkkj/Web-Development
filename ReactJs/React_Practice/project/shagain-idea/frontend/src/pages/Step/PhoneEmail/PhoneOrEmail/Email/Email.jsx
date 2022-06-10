@@ -9,6 +9,7 @@ export default function Email({onNext}) {
   return (
     <div>
       <Card title={"Enter your email"} icon={"📧"}>
+      {/* {err? <p className={styles.buttomPara}>{err}</p>:"" } */}
         <TextInput
           type="email"
           placeholde="example@idea.com"
