@@ -1,25 +1,24 @@
-import React,{useState} from 'react'
-import Avatar from '../Step/Avatar/Avatar'
-import Name from '../Step/Name/Name'
+import React, { useState } from 'react';
+import StepName from '../Steps/StepName/StepName';
+import StepAvatar from '../Steps/StepAvatar/StepAvatar';
 
-export default function Activate() {
-  const steps ={
-    1:Name,
-    2:Avatar
-  }
-  
-  const [step,setStep] = useState(1);
-  const Step = steps[step];
-  function onNext(){
-      if(step==2){
+const steps = {
+    1: StepName,
+    2: StepAvatar,
+};
 
-          return;
-      }
-      setStep(step+1);
-  }
-  return (
-    <div>
-      <Step onNext={onNext}></Step>
-    </div>
-  )
-}
+const Activate = () => {
+    const [step, setStep] = useState(1);
+    const Step = steps[step];
+
+    function onNext() {
+        setStep(step + 1);
+    }
+    return (
+        <div className="cardWrapper">
+            <Step onNext={onNext}></Step>
+        </div>
+    );
+};
+
+export default Activate;

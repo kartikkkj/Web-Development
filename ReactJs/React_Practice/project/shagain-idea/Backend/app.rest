@@ -1,6 +1,0 @@
-POST http://localhost:5000/api/send-otp http/1.1
-Content-Type: application/json
-
-{
-    phoneNo : "9242323423"
-}

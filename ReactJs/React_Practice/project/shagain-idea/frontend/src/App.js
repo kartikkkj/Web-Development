@@ -1,84 +1,120 @@
-import "./App.css";
-import React from "react";
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import Home from "./pages/Home/Home";
-import Navigation from "./Components/Shared/Navigation/Navigation";
-import Register from "./pages/Register/Register";
-import Login from "./pages/Login/Login";
-import Authentication from "./pages/Authentication/Authentication";
-import Activate from "./pages/Activate/Activate";
-import UserName from "./pages/Step/UserName/UserName";
-import PublicRooms from "./pages/PublicRooms/PublicRooms";
-import Forgot from "./pages/Forgot/Forgot";
-import { useSelector } from "react-redux";
-import Name from "./pages/Step/Name/Name";
-
+import './App.css';
+import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
+import Home from './pages/Home/Home';
+import Navigation from './components/shared/Navigation/Navigation';
+import Authenticate from './pages/Authenticate/Authenticate';
+import Activate from './pages/Activate/Activate';
+import Rooms from './pages/Rooms/Rooms';
+import Room from './pages/Room/Room';
+import { useSelector } from 'react-redux';
+import { useLoadingWithRefresh } from './hooks/useLoadingWithRefresh';
+import Loader from './components/shared/Loader/Loader';
 
 function App() {
-  const {isAuth, user} = useSelector((state)=>state.auth)
-  return (
-    <>
-      <BrowserRouter>
-      <Navigation />
-        <Routes>
-          <Route
-            path="/"
-            element={
-              isAuth && user.activated ? (
-                <Navigate replace to="/PublicRooms" />
-              ) : isAuth && !user.activated ? (
-                <Navigate replace to="/activate" />
-              ) : (
-                // <Home />
-                <Activate/>
-              ) 
-            }
-          ></Route>
+    // call refresh endpoint
+    const { loading } = useLoadingWithRefresh();
 
-          <Route
-            path="/authentication"
-            element={
-              !isAuth ? (
-                <Authentication />
-              ) : !user.activated ? (
-                <Navigate replace to="/activate" />
-              ) : (
-                <Navigate replace to="/PublicRooms" />
-              )
-            }
-          ></Route>
-
-          <Route
-            path="/activate"
-            element={
-              !isAuth ? (
-                <Navigate replace to="/" />
-              ) : !user.activated ? (
-                <Activate />
-              ) : (
-                <Navigate replace to="/PublicRooms" />
-              )
-            }
-          ></Route>
-<Route path="/forgotPassword" element={<Forgot />}/>
-          <Route
-            path="/PublicRooms"
-            element={
-              isAuth && user.activated ? (
-                <PublicRooms />
-              ) : isAuth && !user.activated ? (
-                <Navigate replace to="/activate" />
-              ) : (
-                <Home />
-              )
-            }
-          ></Route>
-          {/* <Route path="/register" element={<Register />}></Route>
-          <Route path="/login" element={<Login />}></Route> */}
-        </Routes>
-      </BrowserRouter>
-    </>
-  );
+    return loading ? (
+        <Loader message="Loading, please wait.." />
+    ) : (
+        <BrowserRouter>
+            <Navigation />
+            <Switch>
+                <GuestRoute path="/" exact>
+                    <Home />
+                </GuestRoute>
+                <GuestRoute path="/authenticate">
+                    <Authenticate />
+                </GuestRoute>
+                <SemiProtectedRoute path="/activate">
+                    <Activate />
+                </SemiProtectedRoute>
+                <ProtectedRoute path="/rooms">
+                    <Rooms />
+                </ProtectedRoute>
+                <ProtectedRoute path="/room/:id">
+                    <Room />
+                </ProtectedRoute>
+            </Switch>
+        </BrowserRouter>
+    );
 }
+
+const GuestRoute = ({ children, ...rest }) => {
+    const { isAuth } = useSelector((state) => state.auth);
+    return (
+        <Route
+            {...rest}
+            render={({ location }) => {
+                return isAuth ? (
+                    <Redirect
+                        to={{
+                            pathname: '/rooms',
+                            state: { from: location },
+                        }}
+                    />
+                ) : (
+                    children
+                );
+            }}
+        ></Route>
+    );
+};
+
+const SemiProtectedRoute = ({ children, ...rest }) => {
+    const { user, isAuth } = useSelector((state) => state.auth);
+    return (
+        <Route
+            {...rest}
+            render={({ location }) => {
+                return !isAuth ? (
+                    <Redirect
+                        to={{
+                            pathname: '/',
+                            state: { from: location },
+                        }}
+                    />
+                ) : isAuth && !user.activated ? (
+                    children
+                ) : (
+                    <Redirect
+                        to={{
+                            pathname: '/rooms',
+                            state: { from: location },
+                        }}
+                    />
+                );
+            }}
+        ></Route>
+    );
+};
+
+const ProtectedRoute = ({ children, ...rest }) => {
+    const { user, isAuth } = useSelector((state) => state.auth);
+    return (
+        <Route
+            {...rest}
+            render={({ location }) => {
+                return !isAuth ? (
+                    <Redirect
+                        to={{
+                            pathname: '/',
+                            state: { from: location },
+                        }}
+                    />
+                ) : isAuth && !user.activated ? (
+                    <Redirect
+                        to={{
+                            pathname: '/activate',
+                            state: { from: location },
+                        }}
+                    />
+                ) : (
+                    children
+                );
+            }}
+        ></Route>
+    );
+};
 
 export default App;

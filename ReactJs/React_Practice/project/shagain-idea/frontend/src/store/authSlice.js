@@ -1,36 +1,41 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-  isAuth: false,
-  user: {
-    activated: null,
-  },
-  otp: {
-    phoneNo: "",
-    hash: "",
-    expire: "",
-  },
+    isAuth: false,
+    user: null,
+    otp: {
+        phone: '',
+        hash: '',
+        email:'',
+    },
 };
 
 export const authSlice = createSlice({
-  name: "auth",
-  initialState,
-    
-  reducers: {
-    setAuth: (state, action) => {
-      const {user} = action.payload;
-      state.user = user;
-      state.isAuth = true;
+    name: 'auth',
+    initialState,
+    reducers: {
+        setAuth: (state, action) => {
+            const { user } = action.payload;
+            state.user = user;
+            if (user === null) {
+                state.isAuth = false;
+            } else {
+                state.isAuth = true;
+            }
+        },
+        setOtp: (state, action) => {
+            const { phone, hash } = action.payload;
+            state.otp.phone = phone;
+            state.otp.hash = hash;
+        },
+        setOtpE: (state, action) => {
+            const { email, hash } = action.payload;
+            state.otp.email = email;
+            state.otp.hash = hash;
+        },
     },
-    setOtp: (state, action) => {
-      const { phoneNo, hash, expire } = action.payload;
-      state.otp.phoneNo = phoneNo;
-      state.otp.hash = hash;
-      state.otp.expire = expire;
-    },
-  },
 });
 
-export const { setAuth, setOtp } = authSlice.actions;
+export const { setAuth, setOtp, setOtpE } = authSlice.actions;
 
 export default authSlice.reducer;
